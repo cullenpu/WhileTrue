@@ -1,5 +1,4 @@
 People at COMPANY NAME
 ---
 
-- [Jane Doe, Engineering](./jane_doe.md)
-- ...
+- [Shuaitian, Engineering](./shuaitian_chen.md)
