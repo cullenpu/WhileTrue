@@ -1,10 +1,4 @@
-# Team Repo Template
-
-This Repository includes a template for your Team's Repository. https://github.com/dcsil/klutch is a good example of an implementation of this!
-
-**README template starts below this line 👇👇👇 Delete above this line :)**
-
-# COMPANY NAME
+# WhileTrue
 
 ![Team Logo](./logo.png)
 

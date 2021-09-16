@@ -11,8 +11,4 @@
 ### Work
 - Members are expected to own their work. If issues arise after changes they made, they should fix those issues
 - Work will be evenly delegated in our meetings in accordance to each team member’s strengths and their desire to learn.
-- The team understands that timelines are often inaccurate, personal issues arise, and that setbacks happen and thus will give "softer" deadlines to allow for high quality work.
-
-### Leadership Election
-
-The team decided to elect Rishab Luthra as the current leader. Rishab has the most professional engineering experience in the group and also has a lighter course load this term so he can focus on ensuring the team and the project remain on track.
+- The team understands that timelines are often inaccurate, personal issues arise, and that setbacks happen and thus will give "softer" deadlines to allow for high quality work but also allow us to easily each assignment finish before the course deadlines.
