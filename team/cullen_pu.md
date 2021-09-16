@@ -18,12 +18,12 @@ Cullen is a computer science and statistics student at the University of Toronto
 
 ## Strengths
 
-- Engineering experience working on large scale, high impact projects
-- Skilled in backend development
-- Project design, architecture, and technical writing (tech specs, design docs)
+- Engineering experience working on large scale, high impact projects.
+- Skilled in backend development.
+- Project design, architecture, and technical writing (tech specs, design docs).
 
 ## Weaknesses
 
-- Public speaking
-- Gets distracted easily
-- Sometimes doesn't consider broader or more creative ideas
+- Public speaking.
+- Gets distracted easily.
+- Sometimes doesn't consider broader or more creative ideas.
