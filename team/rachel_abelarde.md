@@ -1,6 +1,6 @@
 # Rachel Gina Abelarde
 
-![Rachel Gina]()
+![Rachel Gina Abelarde](./rachel_abelarde.jpg)
 
 - Software Developer
 - rgabelarde@gmail.com
