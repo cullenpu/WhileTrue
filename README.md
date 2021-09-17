@@ -1,14 +1,8 @@
-# Team Repo Template
-
-This Repository includes a template for your Team's Repository. https://github.com/dcsil/klutch is a good example of an implementation of this!
-
-**README template starts below this line 👇👇👇 Delete above this line :)**
-
-# COMPANY NAME
+# WhileTrue
 
 ![Team Logo](./logo.png)
 
-COMPANY NAME is a company founded in the THEME industry. COMPANY NAME aims to VISION STATEMENT.
+WhileTrue is a company founded in the marketing science industry.
 
 Table of Contents
 ---
