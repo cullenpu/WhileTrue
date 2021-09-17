@@ -19,9 +19,10 @@ Shuaitian is from China, but he finished high school in America and then attende
 
 - Backend programming.
 - Using advanced data structures and algorithms.
-- Python, Java, JavaScript.
+- Familiar with many programming languages such as Python, Java, JavaScript.
 
 ## Weaknesses
 
 - Front-end programming.
 - Leadership skills.
+- Sometimes reckless.
