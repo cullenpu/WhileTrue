@@ -1,6 +1,6 @@
 # WhileTrue
 
-![Team Logo](./logo.png)
+![Team Logo](./logo_small.png)
 
 WhileTrue is a company founded in the marketing science industry.
 
