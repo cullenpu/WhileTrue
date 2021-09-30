@@ -10,7 +10,7 @@ Our team comes from a wide range of backgrounds. We have people from multiple co
 
 Rachel, from Singapore, brings a global perspective. She is experienced in the tech industry, having had internships at multiple start-ups and also plays rugby for her university, which has allowed her to develop excellent leadership and communication skills.
 
-Steven also has a very diverse background, attending high school in Lebanon. He identifies as non-binary which helps understand the perspectives of the LGBTQ+ community. He also has industry experience, having worked at IBM for a year and then at an SAP firm for 4 months.
+Steven also has a very diverse background, attending high school in Lebanon. He identifies as non-binary which helps us understand the perspectives of the LGBTQ+ community. He also has industry experience, having worked at IBM for a year and then at an SAP firm for 4 months.
 
 Cullen has experience in both software engineering and data analysis, having held software engineering and data analyst internships at Amazon and State Street. He is from Boston and provides insight into the US market.
 
