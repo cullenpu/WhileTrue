@@ -1,29 +1,40 @@
 # Roadmap
 
-This describes our plans...
-
-- Setup a roadmap for at least the duration of this course. You may go longer to indicate long term goals. The roadmap can include as much detail as you want with the following conditions:
-    - Must include your immediate next steps
-    - Must include plans to perform user research
-    - Must include low-fidelity plans for a launch date
-    - You fill in the gaps. Be careful not to go too detailed as we have limited knowledge still.
+Below describes our plans for the immediate, medium, and long term future. More information can be found on the GitHub Projects and Issues pages.
 
 ## Short Term
 
-**Duration:** Q3 2019
+**Duration:** Q4 2021
 
-We intend to ship X, Y, Z - list tracking issues that encompass all details.
+- Build endpoints to collect user data from DB to present on dashboard
+- Set up backend and DB for uploading data and offers
+- Integrate service with GPT-3 API to generate personalized marketing content
+- Set up authentication, monitoring, and CI/CD
+- Deploy app and DB on heroku
+- User research and validation
 
 ## Medium Term
 
-**Duration:** Q4 2019
+**Duration:** Q4 2021 - Q1 2022
 
-We intend to... medium-level of detail plans.
+We plan to launch a barebones alpha version in the medium term. This includes:
 
-We plan to launch a barebones alpha version in the medium term.
+- Build out the frontend UI including:
+    - Data input page
+    - UI to display results from GPT-3 content generating model
+    - Dashboard UI console
+- Start training GPT-3 model with marketing data
+- Launch MVP by December 2021
+- Getting approval from OpenAI for a public application (2 week application)
+- Looking into funding options after launching MVP
 
 ## Long Term
 
-**Duration:** 2020
+**Duration:** 2022
 
-We intend to... high level plans
+We intend to:
+
+- Migrate to custom infrastructure on AWS on a virtual private cloud
+- Look into adding support for other industries
+- Raise funding
+- Third party security audits
