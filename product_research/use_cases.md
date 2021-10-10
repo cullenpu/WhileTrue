@@ -4,7 +4,7 @@ Use Cases:
 
 ![Dashboard](./dashboard.png)
 
-2. Marketers input client data and offer and can choose which data should be weighted higher
+2. Marketers input client data and offers and can choose which data should be weighted higher
 
 ![Data](./data.png)
 
