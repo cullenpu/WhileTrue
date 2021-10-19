@@ -10,7 +10,6 @@ dotenv.config();
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 
 const app = express();
-const port = process.env.PORT || 8080;
 
 app.use(cors({ origin: process.env.CLIENT_URL }));
 
@@ -44,6 +43,4 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.listen(port, () => {
-  console.log(`server listening at http://localhost:${port}`);
-});
+export default app;

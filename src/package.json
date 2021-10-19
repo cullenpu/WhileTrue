@@ -2,7 +2,8 @@
     "scripts": {
       "install-all": "npm i --prefix server && npm i --prefix app",
       "build": "npm run install-all && npm run build --prefix app",
-      "start": "npm run start:prod --prefix server"
+      "start": "npm run start:prod --prefix server",
+      "test": "npm run test --prefix app && npm run test --prefix server"
     },
     "devDependencies": {
       "concurrently": "^5.3.0",

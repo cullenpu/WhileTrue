@@ -44,6 +44,7 @@ export const Login = () => {
 
   return (
     <>
+      <h1>LOGIN</h1>
       <div className={styles.login}>
         <LoginForm disabled={disabled} onEmailSubmit={handleLoginWithEmail} />
       </div>
