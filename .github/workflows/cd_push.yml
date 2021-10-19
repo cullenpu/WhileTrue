@@ -24,6 +24,8 @@ jobs:
       - name: Run tests
         run: npm run test
         working-directory: ./src
+        env:
+          REACT_APP_MAGIC_PUBLISHABLE_KEY: ${{ secrets.REACT_APP_MAGIC_PUBLISHABLE_KEY }}
 
       - name: Install Railway
         run: npm i -g @railway/cli
