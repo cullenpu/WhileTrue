@@ -1,15 +1,16 @@
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
-require('dotenv').config();
+import { Magic } from '@magic-sdk/admin';
 
-const { Magic } = require('@magic-sdk/admin');
+dotenv.config();
 
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 app.use(cors({ origin: process.env.CLIENT_URL }));
 
