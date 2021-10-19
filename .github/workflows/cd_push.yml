@@ -17,16 +17,6 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Install packages
-        run: npm run install-all
-        working-directory: ./src
-      
-      - name: Run tests
-        run: npm run test
-        working-directory: ./src
-        env:
-          REACT_APP_MAGIC_PUBLISHABLE_KEY: ${{ secrets.REACT_APP_MAGIC_PUBLISHABLE_KEY }}
-
       - name: Install Railway
         run: npm i -g @railway/cli
         working-directory: ./src
