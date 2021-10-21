@@ -24,7 +24,7 @@ The prototype was created with Figma and shown below.
 
 ### Test Users
 
-Because our app is targeted specifically towards marketers and marketing data scientists in the finance industry, we were limited to a test users from only a small user base who who fit this persona. Our participant was a marketer who works at a Toronto finance startup. Their marketing reach spanned all of the company's client segments.
+Because our app is targeted specifically towards marketers and marketing data scientists in the finance industry, we were limited to a test users from only a small user base who who fit this persona. Our first participant was a marketer who works at a Toronto finance startup. Their marketing reach spanned all of the company's client segments. Our second participant was a senior software engineer at Github with UX experience.
 
 ### Scenarios
 
@@ -50,11 +50,13 @@ Overall, we gained valuable feedback regarding how our application can better su
 
 Are biggest priority is to add missing essential features to our mockup. These are features we did not consider because we did not have a deep understanding of a professional marketer's workflow:
 
-- adding a search bar to every page, so that the user can search saved copy on the dashboard and previously inputted offer and client segment data
+- adding a search bar and a filter to every page, so that the user can search saved copy on the dashboard and previously inputted offer and client segment data
 - adding the ability for users to customize the categories in the data they upload to give them finer control over the data used to generate copy
 - nice to haves such as a character or word count cap on the generated content, ability to favorite generated copy, and ability to export data
 
 Our goal is to add these features while maintaining the intuitiveness of our application. Because our solution is a very specialized SaaS, we were able to keep the design simple and easy to navigate. The simplicity is important for us to maintain as we add more features.
+
+We also gained valuable feedback about our application's UI. Specifically, the data input on the mockup doesn't look like a data input form. Additionally, the prompt form on the content generation page is very ambiguous. Our participant was paused on that page for a long time, unsure of what to do. We plan to make it more informative in our implementation.
 
 ## Notes
 
@@ -66,8 +68,10 @@ Our goal is to add these features while maintaining the intuitiveness of our app
 
 ### Problems
 
-- no search bars on any of the pages or dropdowns
+- no search bars or filters on any of the pages or dropdowns
 - no way to add new categories for either offers or client segment data
 - not possible to character/word count cap
 - cannot export data
-- perfer a way to specify between profrssional and friendly content wording
+- perfer a way to specify between professional and friendly content wording
+- input forms do not look like forms and content generation inputs look like buttons
+- purpose of content generation prompt is unclear and it is not indicative what should be inputted or what it will do
