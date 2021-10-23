@@ -2,3 +2,4 @@
 **/.cache
 **/.parcel-cache
 **/build
+**/dist

@@ -1,4 +1,5 @@
-import createAxiosInstance from './axios';
+import axios from "axios";
+import createAxiosInstance from "./axios";
 
 const postLogin = async (didToken: string) => {
   try {

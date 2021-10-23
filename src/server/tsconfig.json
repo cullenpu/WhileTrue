@@ -12,6 +12,7 @@
         "paths": {
           "~/*": [ "./*" ]
         },
+        "types": [ "node", "jest" ],
     },
     "include": [
         "src/**/*"

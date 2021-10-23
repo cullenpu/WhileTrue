@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Switch, BrowserRouter as Router } from 'react-router-dom';
 import { magic } from './lib/magic';
+import {getUserInfo} from './api/user';
 import { UserContext, initialUser } from './lib/UserContext';
 
 import './App.css';
@@ -14,12 +15,11 @@ const App = () => {
   React.useEffect(() => {
     const fetchUser = async () => {
       setLoading(true);
-      const isLoggedIn = await magic.user.isLoggedIn();
-      if (isLoggedIn) {
-        const userData = await magic.user.getMetadata();
-        setUser(userData);
-      } else {
-        console.log('no user found');
+      try {
+        const userInfo = await getUserInfo();
+        setUser({issuer: userInfo.issuer, email: userInfo.email, publicAddress: ''});
+      } catch (err) {
+        console.log(err);
       }
       setLoading(false);
     }

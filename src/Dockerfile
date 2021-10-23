@@ -3,6 +3,8 @@ FROM node:14
 ARG PORT
 ARG MAGIC_SECRET_KEY
 ARG REACT_APP_MAGIC_PUBLISHABLE_KEY
+ARG JWT_SECRET
+ARG DATABASE_URL
 
 WORKDIR /main
 
@@ -11,6 +13,8 @@ COPY . .
 RUN npm run install-all
 
 RUN npm run build
+
+RUN npm run migrate
 
 ENV NODE_ENV production
 
