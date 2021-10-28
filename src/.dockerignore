@@ -3,4 +3,4 @@
 **/.parcel-cache
 **/build
 **/dist
-**/data
+**/.env

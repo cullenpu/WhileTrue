@@ -1,3 +1,8 @@
 import { Magic } from 'magic-sdk';
 
-export const magic = new Magic(process.env.REACT_APP_MAGIC_PUBLISHABLE_KEY as string);
+let magic;
+if (process.env.NODE_ENV === 'production') {
+    magic = new Magic(process.env.REACT_APP_MAGIC_PUBLISHABLE_KEY as string || '');
+}
+
+export {magic};

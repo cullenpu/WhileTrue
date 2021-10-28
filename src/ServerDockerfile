@@ -1,0 +1,19 @@
+FROM node:14
+
+ARG JWT_SECRET
+ARG DATABASE_URL
+
+WORKDIR /server
+
+ENV PATH /server/node_modules/.bin:$PATH
+
+COPY ./server/package.json ./
+COPY ./server/package-lock.json ./
+COPY ./server/prisma/ ./
+COPY ./server/start-docker.sh ./
+
+RUN npm install --silent
+
+RUN chmod +x ./start-docker.sh
+# start app
+ENTRYPOINT ["bash", "./start-docker.sh"]

@@ -2,6 +2,7 @@ import { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as H from "history";
 
+//@ts-expect-error
 import { magic } from '../lib/magic';
 import { UserContext } from '../lib/UserContext';
 import postLogin from '../api/login';
@@ -20,16 +21,17 @@ export const Callback = (props: Props) => {
         let magicCredential = new URLSearchParams(props.location.search).get('magic_credential');
         if (magicCredential) {
             try {
+                //@ts-expect-error
                 const didToken = await magic.auth.loginWithCredential();
                 if (!didToken) {
                     throw Error("No token found");
                 }
 
-                const status = await postLogin(didToken);
+                const status = await postLogin(didToken, '');
                 if (status !== 200) {
                     throw Error("Failed to validate login");
                 }
-                
+                //@ts-expect-error
                 let userMetadata = await magic.user.getMetadata();
                 await setUser(userMetadata);
                 history.push('/profile');

@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 const getUserInfo = async (req: Request, res: Response) => {
   try {
     // @ts-ignore
-    const user = await prisma.user.findUnique({ where: { id: req.user.issuer } });
+    const user = await prisma.user.findUnique({ where: { email: req.user.email } });
     return res.json({ issuer: user?.id, email: user?.email });
   } catch (error) {
     console.log(error);

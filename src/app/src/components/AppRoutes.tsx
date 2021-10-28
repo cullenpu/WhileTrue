@@ -16,7 +16,7 @@ const AppRoute = ({ component: Component, path, isPrivate, ...rest }: Props) => 
         <Route
             path={path}
             render={props =>
-                isPrivate && !user.issuer ? (
+                isPrivate && !user.email ? (
                     <Redirect
                         to={{ pathname: "/login" }}
                     />

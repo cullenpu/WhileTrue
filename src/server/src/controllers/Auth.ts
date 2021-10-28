@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { Magic } from '@magic-sdk/admin';
 import { PrismaClient } from '@prisma/client';
-
+import { uuid } from 'uuidv4';
 import { setTokenCookie } from '../lib/cookies';
 
 dotenv.config();
@@ -15,11 +15,17 @@ const authLogin = async (req: Request, res: Response) => {
   try {
     if (req.headers.authorization) {
       const didToken = req.headers.authorization.substr(7);
-      await magic.token.validate(didToken);
 
-      const metadata = await magic.users.getMetadataByToken(didToken);
+      let metadata;
+      if (process.env.NODE_ENV === 'production') {
+        await magic.token.validate(didToken);
+
+        metadata = await magic.users.getMetadataByToken(didToken);
+      } else {
+        metadata = { issuer: uuid(), email: req.body.email, publicAddress: '' };
+      }
       if (metadata.issuer && metadata.email) {
-        const user = await prisma.user.findUnique({ where: { id: metadata.issuer } });
+        const user = await prisma.user.findUnique({ where: { email: metadata.email } });
 
         if (!user) {
           await prisma.user.create({
@@ -49,6 +55,7 @@ const authLogin = async (req: Request, res: Response) => {
     if (error instanceof Error) {
       errorMessage = error.message;
     }
+    console.log(errorMessage);
     res.status(500).json({ error: errorMessage });
   }
 };

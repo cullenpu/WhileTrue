@@ -1,0 +1,15 @@
+FROM node:14
+
+ARG PORT
+ARG REACT_APP_MAGIC_PUBLISHABLE_KEY
+
+WORKDIR /app
+
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY ./app/package.json ./
+COPY ./app/package-lock.json ./
+RUN npm install --silent
+
+# start app
+CMD ["npm", "start"]
