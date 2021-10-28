@@ -11,7 +11,7 @@ docs:
   getting_started: ../README.md
   
 commands:
-  bootstrap: src/script/bootstrap
+  bootstrap: script/bootstrap
   database:
     create: docker-compose -p whiletrue run --rm server npm run generate
     migrate: docker-compose -p whiletrue run --rm server npm run migrate:dev

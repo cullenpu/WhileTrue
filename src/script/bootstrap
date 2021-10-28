@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Bootstrap script supportsd MacOS
 
 echo "Check if homebrew is installed"
