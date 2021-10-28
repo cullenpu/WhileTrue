@@ -2,6 +2,7 @@ tools:
   exceptions: https://sentry.io/organizations/dcsil/projects/temporary/?project=5954474
   logging: https://sentry.io/organizations/dcsil/projects/temporary/?project=5954474
   ci: ../.github/workflows/ci_test.yml
+  cd: ../.github/workflows/cd_push.yml
 
 services:
   production: https://uninterested-field-production.up.railway.app/
@@ -14,4 +15,7 @@ commands:
   database:
     create: docker-compose -p whiletrue run --rm server npm run generate
     migrate: docker-compose -p whiletrue run --rm server npm run migrate:dev
-  app: docker-compose -p whiletrue up
+  server: docker-compose -p whiletrue up
+  test: docker-compose -p whiletrue run --rm app npm run test && docker-compose -p whiletrue run --rm server npm run test
+  test_frontend: docker-compose -p whiletrue run --rm app npm run test
+  test_server: docker-compose -p whiletrue run --rm server npm run test

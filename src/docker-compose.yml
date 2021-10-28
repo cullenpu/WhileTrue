@@ -29,6 +29,7 @@ services:
       DATABASE_URL: 'postgres://postgres:postgres@postgres:5432/WhileTrue'
       JWT_SECRET: 'secret'
       CLIENT_URL: 'http://localhost:3000'
+    command: "npm start" 
   app:
     build:
       context: .
