@@ -1,0 +1,16 @@
+tools:
+  exceptions: https://sentry.io/organizations/dcsil/projects/temporary/?project=5954474
+  logging: https://sentry.io/organizations/dcsil/projects/temporary/?project=5954474
+  ci: ../.github/workflows/ci_test.yml
+
+services:
+  production: https://uninterested-field-production.up.railway.app/
+
+docs:
+  getting_started: ../README.md
+  
+commands:
+  bootstrap: script/bootstrap
+  database:
+    migrate: cd server && npm run migrate:dev
+  server: cd server && npm start
