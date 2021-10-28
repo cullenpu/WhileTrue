@@ -21,9 +21,12 @@ echo "Starting docker if docker is not running"
 
 if ! docker info >/dev/null 2>&1; then
     open -g -a Docker.app || exit
-    echo "Please make sure Docker has started before running the bootstrap script again"
-    exit 1
 fi
+
+until docker info > /dev/null 2>&1; do
+  echo "Waiting for docker to start"
+  sleep 5
+done
 
 # Build docker compose images
 docker-compose -f src/docker-compose.yml -p whiletrue build --no-cache
