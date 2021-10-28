@@ -24,7 +24,7 @@ if ! docker info >/dev/null 2>&1; then
 fi
 
 # Build docker compose images
-docker-compose -p whiletrue build --no-cache
+docker-compose -f src/docker-compose.yml -p whiletrue build --no-cache
 
 
 
