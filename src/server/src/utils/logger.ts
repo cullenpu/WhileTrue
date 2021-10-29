@@ -5,6 +5,6 @@ const options = {
   level: 'info', // set a default for when level is not provided in function calls
 };
 
-const logger = logdna.createLogger(process.env.INGESTION_KEY, options);
+const logger = logdna.createLogger(process.env.INGESTION_KEY || "none", options);
 
 export default logger;
