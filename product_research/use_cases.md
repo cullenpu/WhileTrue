@@ -1,13 +1,15 @@
 Use Cases:
 
-1. Marketing teams have a dashboard to track past content and who it was sent to
+1. WhileTrue generates personalized offer content
 
-![Dashboard](./dashboard.png)
+![Content Generation Prompt](./ux_research/content_generation_prompt.png)
+![Content Generation Results](./ux_research/content_generation_results.png)
 
-2. Marketers input client data and offers and can choose which data should be weighted higher
+2. Marketers input client segment and offer data
 
-![Data](./data.png)
+![Data Input Client](./ux_research/data_input_client.png)
+![Data Input Offer](./ux_research/data_input_offer.png)
 
-3. WhileTrue generates personalized offer content
+3. Marketing teams have a dashboard to track and search saved content and see usage history
 
-![Content](./content.png)
+![Dashboard](./ux_research/dashboard.png)

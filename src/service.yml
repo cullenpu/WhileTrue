@@ -1,6 +1,6 @@
 tools:
   exceptions: https://sentry.io/organizations/dcsil/projects/temporary/?project=5954474
-  logging: https://sentry.io/organizations/dcsil/projects/temporary/?project=5954474
+  logging: https://app.logdna.com/d3d439f681/logs/view
   ci: ../.github/workflows/ci_test.yml
   cd: ../.github/workflows/cd_push.yml
 
