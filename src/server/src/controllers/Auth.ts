@@ -5,6 +5,7 @@ import { Magic } from '@magic-sdk/admin';
 import { PrismaClient } from '@prisma/client';
 import { uuid } from 'uuidv4';
 import { setTokenCookie } from '../lib/cookies';
+import logger from '../utils/logger';
 
 dotenv.config();
 
@@ -45,6 +46,8 @@ const authLogin = async (req: Request, res: Response) => {
       );
 
       setTokenCookie(res, token);
+
+      logger.log('User logged in!', { level: 'info', meta: { email: metadata.email } });
 
       res.status(200).json({ authenticated: true });
     } else {

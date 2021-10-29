@@ -7,4 +7,5 @@ Table of Contents
 ---
 
 - [Market](./market.md)
+- [User Validation](./ux_research/report.md)
 - [Roadmap](./roadmap.md)
