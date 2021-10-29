@@ -30,10 +30,9 @@ These instructions are how to get the app up and running locally.
 
 Clone the repository `git clone https://github.com/dcsil/WhileTrue.git && cd WhileTrue/src`
 
-### If running on docker
+### If running locally on docker
 
-1. Run script to install and start docker `./script/bootstrap.sh`
-2. Build docker compose images `docker-compose -p whiletrue build --no-cache`
+1. Run docker compose `docker-compose -p whiletrue up --no-cache`
 
 ### If running locally
 1. Install dependencies `cd app && npm install && cd ../server && npm install`
