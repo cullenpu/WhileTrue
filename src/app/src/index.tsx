@@ -1,17 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import * as dotenv from 'dotenv';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import * as dotenv from 'dotenv';
+// 2. Extend the theme to include custom colors, fonts, etc
+const colors = {
+  blue: {
+    900: '#4895EF',
+  },
+  lime: {
+    50: '#f2ffde',
+    100: '#defcb2',
+    200: '#caf884',
+    300: '#b5f554',
+    400: '#a1f226',
+    500: '#88d90d',
+    600: '#69a905',
+    700: '#4a7801',
+    800: '#2b4800',
+    900: '#0b1900',
+  },
+};
+
+const theme = extendTheme({ colors });
+
 dotenv.config();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ChakraProvider theme={theme}>
+      <App />
+    </ChakraProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
