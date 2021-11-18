@@ -20,11 +20,18 @@ export const GenerateCopy = () => {
       <GenerateInput1 />
 
       <button type='button' style={{position: "absolute", top: "375px", left: "191px", border: "solid black 1px", borderRadius: "4px", width: "165px", height: "40px"}}>
-        EARCH
+        SEARCH
       </button>
      
       <GenerateInput2 />
 
+      <button type='button' style={{position: "absolute", top: "717px", left: "889px", border: "solid black 1px", borderRadius: "4px", width: "165px", height: "40px"}}>
+        FRIENDLY
+      </button>
+
+      <button type='button' id='b1' style={{position: "absolute", top: "717px", left: "1084px", border: "solid black 1px", borderRadius: "32px", width: "165px", height: "40px"}}>
+        GENERATE
+      </button>
  
       <style>{`
         
@@ -32,7 +39,14 @@ export const GenerateCopy = () => {
           background-color: #505D68;
           color: white;
         }
-        
+        #b1 {
+          background-color: #505D68;
+          color: white;
+        }
+        #b1:hover {
+          background-color: white;
+          color: black; 
+        }
       `}</style>
     </>
   );

@@ -18,6 +18,9 @@ import GenerateTittleText from './generateTittleTxt'
         <div id="tittle3">
             <GenerateTittleText tittleText='Keyword Prompt'/>
         </div>
+        <div id="tittle4">
+            <GenerateTittleText tittleText='Language Type'/>
+        </div>
         <style>{`
             #tittle1 {
                 // border: solid 3px green;
@@ -37,6 +40,12 @@ import GenerateTittleText from './generateTittleTxt'
                 top: 433px;
                 left: 191px;
               }
+            #tittle4 {
+            // border: solid 3px green;
+            position: absolute;
+            top: 722px;
+            left: 728px;
+            }
           
         `}</style>
       </>
