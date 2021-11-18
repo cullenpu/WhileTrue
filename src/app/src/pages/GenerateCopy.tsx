@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import HeaderText from '../components/generateHeader';
 import GenerateInput1 from '../components/GenerateInput1';
 import GenerateInput2 from '../components/GenerateInput2';
@@ -73,5 +74,3 @@ export const GenerateCopy = () => {
         }
       `}</style>
     </>
-  );
-};
