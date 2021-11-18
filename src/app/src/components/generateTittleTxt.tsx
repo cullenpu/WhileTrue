@@ -1,32 +1,26 @@
 import * as React from 'react';
 
 interface Props {
-    tittleText1: string;
+    tittleText: string;
     
   }
 
-  const GenerateTittle1 = ({ tittleText1 }:Props) => {
+  const GenerateTittleText = ({ tittleText }:Props) => {
   
     return (
         <>
-        <div className="tittle1">
-          {tittleText1}
-        </div>
+        <p className="tittletext">
+          {tittleText}
+        </p>
         <style>{`
-          .tittle1 {
-            position: absolute;
-            left: 191px;
-            top: 224px;
-
-
+          .tittletext {
+            
             font-family: Ubuntu;
             font-style: normal;
             font-weight: bold;
             font-size: 21px;
             line-height: 31px;
-            /* identical to box height, or 148% */
-
-
+            
             color: #505D68;
           }
         `}</style>
@@ -34,4 +28,4 @@ interface Props {
     );
   };
   
-  export default GenerateTittle1;
+  export default GenerateTittleText;
