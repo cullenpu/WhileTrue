@@ -18,7 +18,8 @@ import * as React from 'react';
             Width: 823px;
             Height: 40px;
             text-align: center;
-  
+            
+            color: #D8D8D8;
             background-color: #424B5A;
             border-radius: 4px;
   
