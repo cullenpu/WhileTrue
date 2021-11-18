@@ -5,12 +5,12 @@ interface Props {
     
   }
 
-  const GenerateTittle2 = ({ tittleText: headerText}:Props) => {
+  const GenerateTittle2 = ({ tittleText }:Props) => {
   
     return (
         <>
         <div className="tittle2">
-          {headerText}
+          {tittleText}
         </div>
         <style>{`
           .tittle2 {
