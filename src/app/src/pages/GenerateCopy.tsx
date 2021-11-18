@@ -1,20 +1,12 @@
 import * as React from 'react';
-<<<<<<< HEAD
-
-import { GenerateForm } from '../components/GenerateForm';
-=======
 import HeaderText from '../components/generateHeader';
 import GenerateTittle1 from '../components/generateTittle1';
 import GenerateTittle2 from '../components/generateTittle2';
 
->>>>>>> d19567d (genertate content buttons and tittles)
 
 export const GenerateCopy = () => {
   return (
     <>
-<<<<<<< HEAD
-      <GenerateForm />
-=======
       <HeaderText headerText="Generate Content"/>
       
       <GenerateTittle1 tittleText1='Offer'/>
@@ -38,11 +30,6 @@ export const GenerateCopy = () => {
           color: white;
         }
       `}</style>
->>>>>>> d19567d (genertate content buttons and tittles)
     </>
   );
-}
-
-
-
-  
+};
