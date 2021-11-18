@@ -3,9 +3,9 @@ import { ContentType } from './typings';
 
 const SavedContentCard = ({ contentTitle, contentText }: ContentType) => {
   return (
-    <Box border="1px" borderColor="gray.200">
-      <Text fontSize="md">{contentTitle}</Text>
-      <Text fontSize="md">{contentText}</Text>
+    <Box mb="20px" p="30px" border="1px" borderRadius="3%" borderColor="gray.200">
+      <Text fontSize="lg" mb="30px">{contentTitle}</Text>
+      <Text fontSize="sm">{contentText}</Text>
     </Box>
   );
 };
@@ -13,9 +13,9 @@ const SavedContentCard = ({ contentTitle, contentText }: ContentType) => {
 const SavedContentTable = (props: { content: ContentType[] }) => {
   const { content } = props;
   return (
-    <div>
-      <h1>Saved Content</h1>
-      <Center width="80%">
+    <div style={{margin: "5% 10%"}}>
+      <Text fontSize="3xl">Saved Content</Text>
+      <Center>
         <Grid width="100%">
           {content.map((c) => (
             <div>
