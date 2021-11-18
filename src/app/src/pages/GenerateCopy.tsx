@@ -25,6 +25,8 @@ export const GenerateCopy = () => {
      
       <GenerateInput2 />
 
+      <input type='text' className='ipt3' placeholder='Enter any other keywords you want to prompt the AI with'/>
+
       <button type='button' style={{position: "absolute", top: "717px", left: "889px", border: "solid black 1px", borderRadius: "4px", width: "165px", height: "40px"}}>
         FRIENDLY
       </button>
@@ -46,6 +48,28 @@ export const GenerateCopy = () => {
         #b1:hover {
           background-color: white;
           color: black; 
+        }
+        .ipt3 {
+          position: absolute;
+          top: 482px;
+          left: 191px;
+          Width: 1020px;
+          Height: 146px;
+          
+          // padding-top: 54px;
+          padding-left: 44px;
+          
+          border-radius: 12px;
+          border: solid black 1px;
+
+        }
+        ::placeholder {
+          font-size: 12px;
+          color: #D8D8D8;
+        }
+        input[type="text"].ipt3::placeholder{
+          font-size: 12px;
+          color: #A1AEB7;
         }
       `}</style>
     </>
