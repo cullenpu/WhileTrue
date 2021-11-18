@@ -9,7 +9,7 @@
     "start:prod": "NODE_ENV='production' node dist/server.js",
     "start:prod2": "NODE_ENV='production' ts-node ./src/server.ts",
     "lint": "eslint --ext ts src",
-    "test": "jest",
+    "test": "jest --detectOpenHandles --forceExit",
     "migrate:dev": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy",
     "migrate:status": "prisma migrate status",

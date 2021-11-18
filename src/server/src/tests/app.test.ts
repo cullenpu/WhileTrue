@@ -2,8 +2,17 @@ import request from 'supertest';
 import app from '../app';
 
 describe('Check status endpoint', () => {
+  jest.setTimeout(30000);
+  // @ts-ignore
   test('Status 200', async () => {
-    const res = await request(app).get('/api/status');
-    expect(res.statusCode).toBe(200);
+    await request(app)
+      .get('/api/status')
+      .then(async (response) => {
+        expect(response.statusCode).toBe(200);
+      });
   });
+});
+
+afterAll(async () => {
+  await new Promise<void>((resolve) => setTimeout(() => resolve(), 10000));
 });
