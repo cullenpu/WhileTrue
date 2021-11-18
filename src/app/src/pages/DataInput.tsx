@@ -1,5 +1,12 @@
 import * as React from 'react';
+import { Center, Text } from '@chakra-ui/react';
 
 export const DataInput = () => {
-  return <h1>DataInput page</h1>;
+  return (
+    <div>
+      <Center>
+        <Text fontSize="5xl">Data Input</Text>
+      </Center>
+    </div>
+  );
 };
