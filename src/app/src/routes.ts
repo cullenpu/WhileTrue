@@ -2,6 +2,7 @@ import { Login, Profile, Status, Callback, Logout } from './pages';
 import { Dashboard } from './pages/Dashboard';
 import { DataInput } from './pages/DataInput';
 import { GenerateCopy } from './pages/GenerateCopy';
+import { Content } from './pages/GenerateContent'
 
 const routes = [
   {
@@ -32,6 +33,11 @@ const routes = [
   {
     path: '/generate',
     component: GenerateCopy,
+    isPrivate: true,
+  },
+  {
+    path: '/content',
+    component: Content,
     isPrivate: true,
   },
   {

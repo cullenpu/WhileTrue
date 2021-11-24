@@ -1,4 +1,5 @@
 import { Center, Text, SimpleGrid, FormLabel, Input, Button, Flex, Link} from '@chakra-ui/react';
+// import { ReactChild, ReactFragment, ReactPortal } from 'react';
 
 import { LabelType, GenerateButton, GenerateSearch } from './typings';
 
@@ -10,9 +11,10 @@ const Label = ({labelText}: LabelType) => {
     );
 }
 
-const GenButton = ({buttonText}: GenerateButton) => {
+
+const GenButton = ({buttonText, hrefText}: GenerateButton) => {
     return (
-        <Link href="/dashboard">
+        <Link href={hrefText}>
             <Button width="165px" height="40px" _hover={{
                   bg: "#505D68",
                   color: "#D8D8D8",
@@ -25,7 +27,7 @@ const GenButton = ({buttonText}: GenerateButton) => {
 const GenSearch = ({barText}: GenerateSearch) => {
     return (
         <Flex experimental_spaceX="50px">
-            <GenButton buttonText="SEARCH" />
+            <GenButton buttonText="SEARCH" hrefText='/Dashboard' />
             <Input placeholder={barText} width="900px" height="40px" color="#D8D8D8" textAlign="center" backgroundColor="#424B5A"/>            
         </Flex> 
     );
@@ -61,8 +63,8 @@ export const GenerateForm = () => {
           </div>
           <Flex marginLeft="51%" marginTop="8%%" experimental_spaceX="10px">
             <Label labelText="Language Type" />
-            <GenButton buttonText="Friendly" />
-            <GenButton buttonText="Generate" />
+            <GenButton buttonText="Friendly" hrefText='/Content' />
+            <GenButton buttonText="Generate" hrefText='/Content' />
           </Flex>
     
           <style>{`
