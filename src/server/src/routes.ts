@@ -24,6 +24,10 @@ router.get('/dashboard/content', (req, res) => {
       contentText:
         'Never worry about lugging heavy textbooks to class again, with a free 2021 iPad when switching to RBC.',
     },
+    {
+      contentTitle: 'Mock offer',
+      contentText: 'Mock text',
+    },
   ]);
 });
 
