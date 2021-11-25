@@ -11,4 +11,13 @@ generator client {
 model User {
   id    String     @id
   email String  @unique
+  content Content[]
+}
+
+model Content {
+  id Int @default(autoincrement()) @id
+  user User @relation(fields: [userId], references: [id])
+  userId String 
+  contentTitle String
+  contentText String
 }

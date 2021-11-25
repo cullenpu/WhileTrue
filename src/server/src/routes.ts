@@ -1,3 +1,4 @@
+import { prisma } from '.prisma/client';
 import express from 'express';
 import jwt from 'express-jwt';
 import { authLogin, jwtMiddleware } from './controllers/Auth';
@@ -45,5 +46,18 @@ router.get('/Content', (req, res) => {
   ]);
 
 });
+
+router.post('/content', async (req, res) => {
+  const { userId, contentTitle, contentText } = req.body;
+  const content = await prisma.content.create({
+    data: {
+      contentTitle,
+      contentText,
+      user: { connect: { id: userId } },
+    }
+  })
+  
+  res.json(content);
+})
 
 export default router;
