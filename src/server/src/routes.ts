@@ -27,4 +27,19 @@ router.get('/dashboard/content', (req, res) => {
   ]);
 });
 
+router.get('/Content', (req, res) => {
+  res.send([
+    {
+      contentText: 'OFFER ONE',
+    },
+    {
+      contentText: 'OFFER TWO',
+    },
+    {
+      contentText: 'OFFER THREE',
+    },
+  ]);
+
+});
+
 export default router;
