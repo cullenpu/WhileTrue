@@ -1,8 +1,8 @@
-import { NextFunction, Request, Response } from 'express';
-import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
 import { Magic } from '@magic-sdk/admin';
 import { PrismaClient } from '@prisma/client';
+import dotenv from 'dotenv';
+import { NextFunction, Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
 import { uuid } from 'uuidv4';
 import { setTokenCookie } from '../lib/cookies';
 import logger from '../utils/logger';
@@ -37,7 +37,9 @@ const authLogin = async (req: Request, res: Response) => {
           });
         }
       } else {
-        throw Error('Could not get metadata from auth token');
+        const message = 'Could not get metadata from auth token';
+        logger.log(message, { level: 'error', meta: { user: req.user.email } });
+        throw Error(message);
       }
 
       const token = jwt.sign(
@@ -51,14 +53,16 @@ const authLogin = async (req: Request, res: Response) => {
 
       res.status(200).json({ authenticated: true });
     } else {
-      throw Error('No authorization header');
+      const message = 'No authorization header';
+      logger.log(message, { level: 'error' });
+      throw Error(message);
     }
   } catch (error) {
     let errorMessage = 'Auth error';
     if (error instanceof Error) {
       errorMessage = error.message;
     }
-    console.log(errorMessage);
+    logger.log('Error while authenticating', { level: 'error', meta: { error: errorMessage } });
     res.status(500).json({ error: errorMessage });
   }
 };
@@ -71,6 +75,7 @@ const jwtMiddleware = (req: Request, res: Response, next: NextFunction) => {
     if (err) return res.sendStatus(403);
 
     req.user = user;
+    console.log('User: ', req.user);
 
     next();
   });

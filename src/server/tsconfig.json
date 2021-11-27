@@ -13,8 +13,12 @@
           "~/*": [ "./*" ]
         },
         "types": [ "node", "jest" ],
+        "typeRoots": [ "./node_modules/@types", "./types" ]
     },
     "include": [
         "src/**/*"
-    ]
+    ],
+    "ts-node": {
+        "files": true
+    }
   }

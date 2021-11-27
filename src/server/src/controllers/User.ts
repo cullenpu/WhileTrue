@@ -1,17 +1,17 @@
-import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { UserRequest } from '~/types';
+import { Request, Response } from 'express';
+import logger from '../utils/logger';
 
 const prisma = new PrismaClient();
 
 const getUserInfo = async (req: Request, res: Response) => {
   try {
-    // @ts-ignore
     const user = await prisma.user.findUnique({ where: { email: req.user.email } });
+
     return res.json({ issuer: user?.id, email: user?.email });
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: 'no user' });
+    logger.log('Error getting user info: user does not exist', { level: 'error', meta: { error: error } });
+    return res.status(500).json({ message: 'User does not exist' });
   }
 };
 
