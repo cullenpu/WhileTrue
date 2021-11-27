@@ -15,7 +15,7 @@ const getUserContent = async (req: Request, res: Response) => {
     });
     res.json(content);
   } catch (error) {
-    logger.log('Error getting content', { level: 'error', meta: { user: req.user.email, error: error } });
+    logger.log('Error getting content', { level: 'error', meta: { user: req.user.email, error } });
     res.status(500).json({ message: 'Error getting content' });
   }
 };
@@ -32,7 +32,7 @@ const saveUserContent = async (req: Request, res: Response) => {
     });
     res.json(content);
   } catch (error) {
-    logger.log('Error saving content', { level: 'error', meta: { user: req.user.email, error: error } });
+    logger.log('Error saving content', { level: 'error', meta: { user: req.user.email, error } });
     res.status(500).json({ message: 'Error saving content' });
   }
 };

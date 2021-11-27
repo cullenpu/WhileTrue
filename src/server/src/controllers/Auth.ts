@@ -70,7 +70,6 @@ const authLogin = async (req: Request, res: Response) => {
 const jwtMiddleware = (req: Request, res: Response, next: NextFunction) => {
   const { token } = req.cookies;
   if (token == null) return res.sendStatus(401);
-
   jwt.verify(token, process.env.JWT_SECRET as string, (err: any, user: any) => {
     if (err) return res.sendStatus(403);
 
