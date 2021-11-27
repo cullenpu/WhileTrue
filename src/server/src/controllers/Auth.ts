@@ -75,8 +75,6 @@ const jwtMiddleware = (req: Request, res: Response, next: NextFunction) => {
     if (err) return res.sendStatus(403);
 
     req.user = user;
-    console.log('User: ', req.user);
-
     next();
   });
 };

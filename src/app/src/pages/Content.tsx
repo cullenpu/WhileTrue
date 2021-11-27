@@ -4,7 +4,6 @@ import createAxiosInstance from '../api/axios';
 import GeneratedContentTable from '../components/GeneratedContentTable';
 import { GenerateButton, GenerateContent } from '../components/typings';
 
-
 const GenButton = ({ buttonText, hrefText }: GenerateButton) => {
   return (
     <Link href={hrefText}>

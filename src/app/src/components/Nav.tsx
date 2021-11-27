@@ -54,7 +54,7 @@ const Nav = () => {
                 }}
                 href="/generate"
               >
-                Generate Copy
+                Generate Content
               </Link>
             </HStack>
           </HStack>
