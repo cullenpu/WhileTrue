@@ -1,32 +1,16 @@
-import { Button, Center, Link, Text } from '@chakra-ui/react';
+import { Center, Text } from '@chakra-ui/react';
 import * as React from 'react';
 import createAxiosInstance from '../api/axios';
 import GeneratedContentTable from '../components/GeneratedContentTable';
-import { GenerateButton, GenerateContent } from '../components/typings';
-
-const GenButton = ({ buttonText, hrefText }: GenerateButton) => {
-  return (
-    <Link href={hrefText}>
-      <Button
-        width="165px"
-        height="40px"
-        _hover={{
-          bg: '#505D68',
-          color: '#D8D8D8',
-        }}
-      >
-        {buttonText}
-      </Button>
-    </Link>
-  );
-};
+import { MainButton } from '../components/MainButton';
+import { GenerateContent } from '../components/typings';
 
 const getContent = async (setContent: {
   (value: React.SetStateAction<GenerateContent[]>): void;
   (arg0: never): void;
 }) => {
   const instance = createAxiosInstance();
-  const generateContent = await instance.get('/Content');
+  const generateContent = await instance.get('/content');
   setContent(generateContent.data);
 };
 
@@ -43,10 +27,10 @@ export const Content = () => {
   return (
     <div>
       <Center>
-        <Text fontSize="5xl">Generate Content</Text>
+        <Text fontSize="5xl">Personalized Content</Text>
       </Center>
       <div style={{ margin: '5% 10%' }}>
-        <GenButton buttonText="BACK" hrefText="/Generate" />
+        <MainButton buttonText="BACK" hrefText="/generate" />
       </div>
 
       <GeneratedContentTable content={generateContent} />
