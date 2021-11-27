@@ -3,10 +3,6 @@ export interface ContentType {
   contentText: string;
 }
 
-export interface LabelType {
-  labelText: string;
-}
-
 export interface GenerateButton {
   buttonText: string;
   hrefText: string;
