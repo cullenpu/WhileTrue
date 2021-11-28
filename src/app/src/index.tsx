@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
   blue: {
+    500: '#47ADE4',
     900: '#4895EF',
   },
   lime: {
