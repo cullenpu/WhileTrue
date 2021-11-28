@@ -2,6 +2,7 @@ import {
   Box,
   Flex,
   Avatar,
+  Heading,
   HStack,
   Link,
   Button,
@@ -16,7 +17,7 @@ import {
 const Nav = () => {
   return (
     <>
-      <Box bg={useColorModeValue('blue.100', 'blue.900')} px={4}>
+      <Box color="white" bg={useColorModeValue('blue.500', 'blue.500')} px={4}>
         <Flex h={16} alignItems="center" justifyContent="space-between">
           <HStack spacing={8} alignItems="center">
             <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
@@ -30,7 +31,9 @@ const Nav = () => {
                 }}
                 href="/dashboard"
               >
-                Dashboard
+                <Heading as="h5" size="sm">
+                  DASHBOARD
+                </Heading>
               </Link>
               <Link
                 px={2}
@@ -42,7 +45,9 @@ const Nav = () => {
                 }}
                 href="/data"
               >
-                Data Input
+                <Heading as="h5" size="sm">
+                  DATA INPUT
+                </Heading>
               </Link>
               <Link
                 px={2}
@@ -54,7 +59,9 @@ const Nav = () => {
                 }}
                 href="/generate"
               >
-                Generate Content
+                <Heading as="h5" size="sm">
+                  GENERATE COPY
+                </Heading>
               </Link>
             </HStack>
           </HStack>

@@ -39,12 +39,11 @@ const getUserOffers = async (req: Request, res: Response) => {
 };
 
 const saveUserClientSegment = async (req: Request, res: Response) => {
-  const { offerType, offerDescription } = req.body;
+  const { clientSegment } = req.body;
   try {
-    const offer = await prisma.offer.create({
+    const offer = await prisma.clientSegment.create({
       data: {
-        type: offerType,
-        offer: offerDescription,
+        segment: clientSegment,
         user: { connect: { email: req.user.email } },
       },
     });
