@@ -3,11 +3,12 @@ import { useState } from 'react';
 import { MainButton } from '../components/MainButton';
 import { GenerateSearch } from '../components/typings';
 
-const GenSearch = ({ barText }: GenerateSearch) => {
+const GenSearch = ({ barText, onChangeHandler }: GenerateSearch) => {
   return (
     <Flex experimental_spaceX="50px">
       <MainButton buttonText="SEARCH" hrefText="/Dashboard" />
       <Input
+        onChange={onChangeHandler}
         placeholder={barText}
         width="900px"
         height="40px"
@@ -20,10 +21,8 @@ const GenSearch = ({ barText }: GenerateSearch) => {
 };
 
 export const Generate = () => {
-  // const [offer, setOffer] = useState('');
-  // const [clientSegment, setClientSegment] = useState('');
-  const offer = '';
-  const clientSegment = '';
+  const [offer, setOffer] = useState('');
+  const [clientSegment, setClientSegment] = useState('');
   const [languageType, setLanguageType] = useState('Friendly');
 
   return (
@@ -36,10 +35,20 @@ export const Generate = () => {
         <Center>
           <SimpleGrid columns={1} rowGap={3} w="full">
             <FormLabel fontSize="2xl">Offer</FormLabel>
-            <GenSearch barText="Search for an offer here" />
+            <GenSearch
+              barText="Search for an offer here"
+              onChangeHandler={(e) => {
+                setOffer(e.target.value);
+              }}
+            />
 
             <FormLabel fontSize="2xl">Client Segment</FormLabel>
-            <GenSearch barText="Search for a client segment here" />
+            <GenSearch
+              barText="Search for a client segment here"
+              onChangeHandler={(e) => {
+                setClientSegment(e.target.value);
+              }}
+            />
 
             <FormLabel fontSize="2xl">Keyword Prompt</FormLabel>
             <Input placeholder="Enter any other keywords you want to prompt the AI with" h="146px" color="#A1AEB7" />

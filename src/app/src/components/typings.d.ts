@@ -11,6 +11,7 @@ export interface MainButtonAttr {
 
 export interface GenerateSearch {
   barText: string;
+  onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface GenerateContent {
