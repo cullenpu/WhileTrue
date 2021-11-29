@@ -3,13 +3,15 @@ export interface ContentType {
   contentText: string;
 }
 
-export interface GenerateButton {
+export interface MainButtonAttr {
   buttonText: string;
-  hrefText: string;
+  hrefText?: string;
+  onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export interface GenerateSearch {
   barText: string;
+  onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface GenerateContent {

@@ -1,8 +1,8 @@
-import { Login, Profile, Status, Callback, Logout } from './pages';
+import { Callback, Login, Logout, Profile, Status } from './pages';
+import { Content } from './pages/Content';
 import { Dashboard } from './pages/Dashboard';
 import { DataInput } from './pages/DataInput';
-import { GenerateCopy } from './pages/GenerateCopy';
-import { Content } from './pages/Content'
+import { Generate } from './pages/Generate';
 
 const routes = [
   {
@@ -32,7 +32,7 @@ const routes = [
   },
   {
     path: '/generate',
-    component: GenerateCopy,
+    component: Generate,
     isPrivate: true,
   },
   {
