@@ -1,6 +1,6 @@
 import { Center, Heading } from '@chakra-ui/react';
 import * as React from 'react';
-import { getContent } from '../api/content';
+import { getData } from '../api/data';
 import SavedContentTable from '../components/SavedContentTable';
 import { ContentCard } from '../components/typings';
 
@@ -9,7 +9,7 @@ export const Dashboard = () => {
 
   const getContentFromApi = async () => {
     try {
-      setContent(await getContent());
+      setContent(await getData('content'));
     } catch (err) {
       console.log(err);
     }

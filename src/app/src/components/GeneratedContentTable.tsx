@@ -1,12 +1,12 @@
 import { Box, Center, Grid, Text } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/react';
 import { useState } from 'react';
-import { postContent } from '../api/content';
+import { postData } from '../api/data';
 import { ContentCard } from './typings';
 
 function HandleSave(setButtonText: Function, buttonText: string, contentTitle: string, contentBody: string) {
   if (buttonText === 'Save') {
-    postContent(contentTitle, contentBody);
+    postData('content', { contentTitle, contentBody });
     setButtonText('Unsave');
   } else {
     setButtonText('Save');

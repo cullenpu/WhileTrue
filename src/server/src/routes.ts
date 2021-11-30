@@ -1,7 +1,7 @@
 import express from 'express';
 import { authLogin, jwtMiddleware } from './controllers/Auth';
-import { generateCopy, getUserContent, saveUserContent } from './controllers/Content';
-import { getUserClientSegments, getUserOffers, saveUserClientSegment, saveUserOffer } from './controllers/Data';
+import { generateCopy } from './controllers/Content';
+import { getData, saveData } from './controllers/Data';
 import { getUserInfo } from './controllers/User';
 
 const router = express.Router();
@@ -13,16 +13,16 @@ router.get('/status', (_, res) => {
 router.post('/login', authLogin);
 router.get('/info', jwtMiddleware, getUserInfo);
 
-// Content
-router.get('/content', jwtMiddleware, getUserContent);
-router.post('/content', jwtMiddleware, saveUserContent);
-
 router.post('/copy', jwtMiddleware, generateCopy);
 
-// Offers and Client Segments
-router.get('/data/clients', jwtMiddleware, getUserClientSegments);
-router.get('/data/offers', jwtMiddleware, getUserOffers);
-router.post('/data/clients', jwtMiddleware, saveUserClientSegment);
-router.post('/data/offers', jwtMiddleware, saveUserOffer);
+// Content, Offers and Client Segments
+router.get('/data/content', jwtMiddleware, (req, res) => getData(req, res, 'content'));
+router.post('/data/content', jwtMiddleware, (req, res) => saveData(req, res, 'content'));
+
+router.get('/data/clients', jwtMiddleware, (req, res) => getData(req, res, 'clientSegment'));
+router.post('/data/clients', jwtMiddleware, (req, res) => saveData(req, res, 'clientSegment'));
+
+router.get('/data/offers', jwtMiddleware, (req, res) => getData(req, res, 'offer'));
+router.post('/data/offers', jwtMiddleware, (req, res) => saveData(req, res, 'offer'));
 
 export default router;

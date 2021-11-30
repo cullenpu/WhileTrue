@@ -1,10 +1,9 @@
 import { Box, Center, Heading, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import * as React from 'react';
-import { getClientSegments, getOffers, postClientSegment, postOffer } from '../api/data';
+import { getData, postData } from '../api/data';
 import ClientSegmentInputs from '../components/ClientSegmentInputs';
 import DataTable from '../components/DataTable';
 import OfferInputs from '../components/OfferInputs';
-
 
 export const DataInput = () => {
   const [isLoading, setLoading] = React.useState(true);
@@ -14,8 +13,8 @@ export const DataInput = () => {
   const getDataFromApi = async () => {
     try {
       setLoading(true);
-      setOffers(await getOffers());
-      setClientSegments(await getClientSegments());
+      setOffers(await getData('offers'));
+      setClientSegments(await getData('clients'));
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -26,13 +25,13 @@ export const DataInput = () => {
     getDataFromApi();
   }, []);
 
-  const saveOffer = async (offerDescription: string, offerType: string) => {
-    await postOffer(offerDescription, offerType);
+  const saveOffer = async (offer: string, type: string) => {
+    await postData('offers', { offer, type });
     getDataFromApi();
   };
 
-  const saveClientSegment = async (clientSegment: string) => {
-    await postClientSegment(clientSegment);
+  const saveClientSegment = async (segment: string) => {
+    await postData('clients', { segment });
     getDataFromApi();
   };
 

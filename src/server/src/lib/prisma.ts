@@ -45,4 +45,4 @@ const saveDataForUser = async (prismaModel: PrismaModel, data: object, email: st
   });
 };
 
-export { getDataForUser, getOfferAndClientSegmentForUser, saveDataForUser };
+export { getDataForUser, getOfferAndClientSegmentForUser, saveDataForUser, PrismaModel };
