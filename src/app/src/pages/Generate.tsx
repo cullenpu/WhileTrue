@@ -1,9 +1,9 @@
-import { Button, Center, Flex, FormLabel, Input, SimpleGrid, Spacer, Text } from '@chakra-ui/react';
+import { Button, Center, Flex, FormLabel, Heading, Input, SimpleGrid, Spacer } from '@chakra-ui/react';
 import { useState } from 'react';
 import { MainButton } from '../components/MainButton';
-import { GenerateSearch } from '../components/typings';
+import { GenerateSearchBar } from '../components/typings';
 
-const GenSearch = ({ barText, onChangeHandler }: GenerateSearch) => {
+const GenSearch = ({ barText, onChangeHandler }: GenerateSearchBar) => {
   return (
     <Flex experimental_spaceX="50px">
       <MainButton buttonText="SEARCH" hrefText="/Dashboard" />
@@ -20,6 +20,17 @@ const GenSearch = ({ barText, onChangeHandler }: GenerateSearch) => {
   );
 };
 
+const generateContent = async (offer: string, clientSegment: string, languageType: string) => {
+  console.log(offer, clientSegment, languageType);
+
+
+  
+  // TODO: use GPT-3 API to generate personalized content
+
+
+
+};
+
 export const Generate = () => {
   const [offer, setOffer] = useState('');
   const [clientSegment, setClientSegment] = useState('');
@@ -27,9 +38,9 @@ export const Generate = () => {
 
   return (
     <div>
-      <div style={{ margin: '5% 15% 40px 15%' }}>
-        <Center>
-          <Text fontSize="5xl">Generate Content</Text>
+      <div style={{ margin: '0 15% 40px 15%' }}>
+        <Center m="10">
+          <Heading>GENERATE CONTENT</Heading>
         </Center>
 
         <Center>
@@ -66,7 +77,14 @@ export const Generate = () => {
         />
         <Spacer />
         {offer && clientSegment ? (
-          <MainButton buttonText="Generate" hrefText="/content" />
+          <MainButton
+            buttonText="Generate"
+            onClickHandler={(e) => {
+              e.preventDefault();
+              generateContent(offer, clientSegment, languageType);
+            }}
+            hrefText="/content"
+          />
         ) : (
           <Button width="165px" height="40px" isDisabled>
             Select Data

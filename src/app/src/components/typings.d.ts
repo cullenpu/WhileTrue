@@ -1,6 +1,6 @@
-export interface ContentType {
+export interface ContentCard {
   contentTitle: string;
-  contentText: string;
+  contentBody: string;
 }
 
 export interface MainButtonAttr {
@@ -9,11 +9,7 @@ export interface MainButtonAttr {
   onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export interface GenerateSearch {
+export interface GenerateSearchBar {
   barText: string;
   onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-export interface GenerateContent {
-  contentText: string;
 }

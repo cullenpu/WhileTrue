@@ -1,19 +1,19 @@
-import { Center, Grid, Box, Text } from '@chakra-ui/layout';
+import { Box, Center, Grid, Text } from '@chakra-ui/layout';
 import { Input } from '@chakra-ui/react';
-import { ContentType } from './typings';
+import { ContentCard } from './typings';
 
-const SavedContentCard = ({ contentTitle, contentText }: ContentType) => {
+const SavedContentCard = ({ contentTitle, contentBody }: ContentCard) => {
   return (
     <Box mb="20px" p="30px" border="1px" borderRadius="3%" borderColor="gray.200">
       <Text fontSize="lg" mb="30px">
         {contentTitle}
       </Text>
-      <Text fontSize="sm">{contentText}</Text>
+      <Text fontSize="sm">{contentBody}</Text>
     </Box>
   );
 };
 
-const SavedContentTable = (props: { content: ContentType[] }) => {
+const SavedContentTable = (props: { content: ContentCard[] }) => {
   const { content } = props;
   return (
     <div style={{ margin: '5% 10%' }}>
@@ -26,7 +26,7 @@ const SavedContentTable = (props: { content: ContentType[] }) => {
         <Grid width="100%">
           {content.map((c) => (
             <div>
-              <SavedContentCard contentTitle={c.contentTitle} contentText={c.contentText} />
+              <SavedContentCard contentTitle={c.contentTitle} contentBody={c.contentBody} />
             </div>
           ))}
         </Grid>

@@ -1,6 +1,6 @@
 import express from 'express';
 import { authLogin, jwtMiddleware } from './controllers/Auth';
-import { getUserContent, saveUserContent } from './controllers/Content';
+import { generateCopy, getUserContent, saveUserContent } from './controllers/Content';
 import { getUserClientSegments, getUserOffers, saveUserClientSegment, saveUserOffer } from './controllers/Data';
 import { getUserInfo } from './controllers/User';
 
@@ -16,6 +16,8 @@ router.get('/info', jwtMiddleware, getUserInfo);
 // Content
 router.get('/content', jwtMiddleware, getUserContent);
 router.post('/content', jwtMiddleware, saveUserContent);
+
+router.post('/copy', jwtMiddleware, generateCopy);
 
 // Offers and Client Segments
 router.get('/data/clients', jwtMiddleware, getUserClientSegments);

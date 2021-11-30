@@ -1,10 +1,10 @@
+import { Box, Center, Heading, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import * as React from 'react';
-import { Box, Heading, Spinner, Tabs, TabList, TabPanels, Tab, TabPanel, Center } from '@chakra-ui/react';
-
-import { getOffers, postOffer, getClientSegments, postClientSegment } from '../api/data';
+import { getClientSegments, getOffers, postClientSegment, postOffer } from '../api/data';
 import ClientSegmentInputs from '../components/ClientSegmentInputs';
-import OfferInputs from '../components/OfferInputs';
 import DataTable from '../components/DataTable';
+import OfferInputs from '../components/OfferInputs';
+
 
 export const DataInput = () => {
   const [isLoading, setLoading] = React.useState(true);

@@ -1,36 +1,28 @@
+import { Center, Heading } from '@chakra-ui/react';
 import * as React from 'react';
-import { Center, Text } from '@chakra-ui/react';
-
-import createAxiosInstance from '../api/axios';
+import { getContent } from '../api/content';
 import SavedContentTable from '../components/SavedContentTable';
-import { ContentType } from '../components/typings';
-
-const getContent = async (setContent: { (value: React.SetStateAction<ContentType[]>): void; (arg0: never): void }) => {
-  const instance = createAxiosInstance();
-  const content = await instance.get('/content');
-  setContent(content.data);
-};
+import { ContentCard } from '../components/typings';
 
 export const Dashboard = () => {
-  const [content, setContent] = React.useState<ContentType[]>([]);
-  React.useEffect(() => {
+  const [content, setContent] = React.useState<ContentCard[]>([]);
+
+  const getContentFromApi = async () => {
     try {
-      // const testContent = {
-      //   contentTitle: 'test title',
-      //   contentText: 'test text',
-      // };
-      // const instance = createAxiosInstance();
-      // instance.post('/content', testContent);
-      getContent(setContent);
+      setContent(await getContent());
     } catch (err) {
       console.log(err);
     }
+  };
+
+  React.useEffect(() => {
+    getContentFromApi();
   }, []);
 
   return (
     <div>
-      <Center>
-        <Text fontSize="5xl">Dashboard</Text>
+      <Center m="10">
+        <Heading>DASHBOARD</Heading>
       </Center>
       <SavedContentTable content={content} />
     </div>
