@@ -1,13 +1,12 @@
 import createAxiosInstance from './axios';
 
-const generateContent = async (offer: string, clientSegment: string, languageType: string) => {
+const generateContent = async (offerId: number, clientSegmentId: number, seed: string) => {
   // use GPT-3 API to generate personalized content
   try {
-    console.log(offer, clientSegment, languageType);
     const instance = createAxiosInstance();
-    const res = await instance.post('/generate-copy', { clientSegment, offer, languageType });
+    const res = await instance.post('/generate-copy', { clientSegmentId, offerId, seed });
     const generatedContent = res.data;
-    console.log(generateContent);
+    console.log(generatedContent);
     return generatedContent;
   } catch (err) {
     console.log(err);
@@ -15,4 +14,15 @@ const generateContent = async (offer: string, clientSegment: string, languageTyp
   }
 };
 
-export default generateContent;
+const searchDataByModel = async (model: string, searchTerm: string) => {
+  try {
+    const instance = createAxiosInstance();
+    const res = await instance.get(`/data/${model}?searchTerm=${searchTerm}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};
+
+export { generateContent, searchDataByModel };

@@ -10,6 +10,8 @@ export interface MainButtonAttr {
 }
 
 export interface GenerateSearchBar {
-  barText: string;
-  onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
+  setDataId: (data: number) => void;
+  model: string;
+  searchFunc: (model: string, searchTerm: string) => any;
 }

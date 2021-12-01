@@ -45,4 +45,15 @@ const saveDataForUser = async (prismaModel: PrismaModel, data: object, email: st
   });
 };
 
-export { getDataForUser, getOfferAndClientSegmentForUser, saveDataForUser, PrismaModel };
+const searchData = async (prismaModel: PrismaModel, searchTerm: string) => {
+  // @ts-expect-error
+  return prismaModel.findMany({
+    where: {
+      body: {
+        search: searchTerm,
+      },
+    },
+  });
+};
+
+export { getDataForUser, getOfferAndClientSegmentForUser, saveDataForUser, searchData, PrismaModel };

@@ -1,7 +1,7 @@
 import express from 'express';
 import { authLogin, jwtMiddleware } from './controllers/Auth';
-import { generateCopy } from './controllers/Content';
-import { getData, saveData } from './controllers/Data';
+import generateCopy from './controllers/Content';
+import { getData, saveData, searchDataByModel } from './controllers/Data';
 import { getUserInfo } from './controllers/User';
 
 const router = express.Router();
@@ -24,5 +24,10 @@ router.post('/data/clients', jwtMiddleware, (req, res) => saveData(req, res, 'cl
 
 router.get('/data/offers', jwtMiddleware, (req, res) => getData(req, res, 'offer'));
 router.post('/data/offers', jwtMiddleware, (req, res) => saveData(req, res, 'offer'));
+
+router.get('/data/offers?searchTerm=:searchTerm', jwtMiddleware, (req, res) => searchDataByModel(req, res, 'offer'));
+router.get('/data/clients?searchTerm=:searchTerm', jwtMiddleware, (req, res) =>
+  searchDataByModel(req, res, 'clientSegment'),
+);
 
 export default router;
