@@ -13,7 +13,7 @@ router.get('/status', (_, res) => {
 router.post('/login', authLogin);
 router.get('/info', jwtMiddleware, getUserInfo);
 
-router.post('/copy', jwtMiddleware, generateCopy);
+router.post('/generate-copy', jwtMiddleware, generateCopy);
 
 // Content, Offers and Client Segments
 router.get('/data/content', jwtMiddleware, (req, res) => getData(req, res, 'content'));

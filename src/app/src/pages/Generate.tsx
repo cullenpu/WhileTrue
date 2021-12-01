@@ -1,5 +1,6 @@
 import { Button, Center, Flex, FormLabel, Heading, Input, SimpleGrid, Spacer } from '@chakra-ui/react';
 import { useState } from 'react';
+import generateContent from '../api/generateContent';
 import { MainButton } from '../components/MainButton';
 import { GenerateSearchBar } from '../components/typings';
 
@@ -18,17 +19,6 @@ const GenSearch = ({ barText, onChangeHandler }: GenerateSearchBar) => {
       />
     </Flex>
   );
-};
-
-const generateContent = async (offer: string, clientSegment: string, languageType: string) => {
-  console.log(offer, clientSegment, languageType);
-
-
-  
-  // TODO: use GPT-3 API to generate personalized content
-
-
-
 };
 
 export const Generate = () => {
