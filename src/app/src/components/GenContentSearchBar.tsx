@@ -34,10 +34,21 @@ const GenContentSearchBar = ({ placeholder, setDataId, model, searchFunc }: Gene
 
   return (
     // <Flex experimental_spaceX="50px">
-      // <MainButton buttonText="SEARCH" hrefText="/Dashboard" />
-      <div style={{ width: '100%' }}>
-        <Select placeholder={placeholder} options={searchResults} onChange={handleChange} />
-      </div>
+    // <MainButton buttonText="SEARCH" hrefText="/Dashboard" />
+    <div style={{ width: '100%' }}>
+      <Select
+        placeholder={placeholder}
+        options={searchResults}
+        onChange={handleChange}
+        styles={{
+          control: (base, _) => ({
+            ...base,
+            '&:hover': { borderColor: '#47ADE4' }, // border style on hover
+            border: '1px solid lightgray', // default border color
+          }),
+        }}
+      />
+    </div>
     // </Flex>
   );
 };

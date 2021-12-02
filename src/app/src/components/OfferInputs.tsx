@@ -30,7 +30,7 @@ const OfferInputs = ({ onOfferSave }: Props) => {
           onChange={(e) => setOfferType(e.target.value)}
         />
         <Spacer />
-        <Button variantColor="teal" size="lg" onClick={() => onOfferSave(offerDescription, offerType)}>
+        <Button size="lg" onClick={() => onOfferSave(offerDescription, offerType)}>
           Add
         </Button>
       </Flex>

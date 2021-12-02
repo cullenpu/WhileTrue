@@ -27,7 +27,24 @@ const colors = {
   },
 };
 
-const theme = extendTheme({ colors });
+const components = {
+  Button: {
+    baseStyle: {
+      fontWeight: 'bold',
+    },
+    variants: {
+      // @ts-expect-error
+      solid: (props) => ({
+        bg: 'blue.500',
+        color: 'white',
+        _hover: {
+          bg: 'blue.200',
+        },
+      }),
+    },
+  },
+};
+const theme = extendTheme({ colors, components });
 
 dotenv.config();
 

@@ -47,8 +47,7 @@ export const Login = () => {
         await setUser({ issuer: '', email, publicAddress: '' });
       }
 
-      console.log('yo');
-      history.push('/profile');
+      history.push('/dashboard');
     } catch (error) {
       setDisabled(false); // re-enable login button - user may have requested to edit their email
       console.log(error);

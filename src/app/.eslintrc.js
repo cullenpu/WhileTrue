@@ -24,6 +24,7 @@ module.exports = {
       'react/jsx-no-bind': 'off',
       'import/prefer-default-export': 'off',
       'react/react-in-jsx-scope': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
       'spaced-comment': 'off',
       'import/no-extraneous-dependencies': 'off',
       'jsx-a11y/anchor-is-valid': 'off',

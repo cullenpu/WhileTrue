@@ -32,7 +32,7 @@ const Nav = () => {
                 href="/dashboard"
               >
                 <Heading as="h5" size="sm">
-                  DASHBOARD
+                  Dashboard
                 </Heading>
               </Link>
               <Link
@@ -46,7 +46,7 @@ const Nav = () => {
                 href="/data"
               >
                 <Heading as="h5" size="sm">
-                  DATA INPUT
+                  Data Input
                 </Heading>
               </Link>
               <Link
@@ -60,7 +60,7 @@ const Nav = () => {
                 href="/generate"
               >
                 <Heading as="h5" size="sm">
-                  GENERATE COPY
+                  Create
                 </Heading>
               </Link>
             </HStack>
@@ -72,11 +72,11 @@ const Nav = () => {
               </MenuButton>
               <MenuList>
                 <Link href="/profile">
-                  <MenuItem>Profile</MenuItem>
+                  <MenuItem color="black">Profile</MenuItem>
                 </Link>
-                <MenuDivider />
+                <MenuDivider bg="black" />
                 <Link href="/logout">
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem color="black">Logout</MenuItem>
                 </Link>
               </MenuList>
             </Menu>

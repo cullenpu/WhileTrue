@@ -38,14 +38,18 @@ export const DataInput = () => {
   return (
     <div>
       <Center m="10">
-        <Heading>DATA INPUT</Heading>
+        <Heading>Data Input</Heading>
       </Center>
 
       <Box maxW="75%" mx="auto">
         <Tabs isFitted>
-          <TabList>
-            <Tab _selected={{ color: 'white', bg: 'blue.500' }}>OFFER</Tab>
-            <Tab _selected={{ color: 'white', bg: 'blue.500' }}>CUSTOMER SEGMENT</Tab>
+          <TabList mx="auto" maxW="75%">
+            <Tab _selected={{ color: 'white', bg: 'blue.500', borderRadius: '5' }} fontWeight="bold">
+              Offer
+            </Tab>
+            <Tab _selected={{ color: 'white', bg: 'blue.500', borderRadius: '5' }} fontWeight="bold">
+              Customer Segment
+            </Tab>
           </TabList>
 
           <TabPanels>

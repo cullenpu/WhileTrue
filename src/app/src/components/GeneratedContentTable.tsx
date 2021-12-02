@@ -16,11 +16,13 @@ function handleSave(setButtonText: Function, buttonText: string, contentTitle: s
 const GeneratedContentCard = ({ contentTitle, contentBody }: ContentCard) => {
   const [buttonText, setButtonText] = useState('Save');
   return (
-    <Box mb="20px" p="30px" border="1px" borderRadius="3%" borderColor="gray.200">
+    <Box mb="20px" p="30px" border="1px" borderRadius="5" borderColor="blue.500">
       <Text fontSize="lg" mb="30px">
-        {contentTitle}
+        {contentBody}
       </Text>
-      <Text fontSize="sm">{contentBody}</Text>
+      <Text fontSize="sm" mb="30px">
+        Prompt: {contentTitle}
+      </Text>
       <Button onClick={() => handleSave(setButtonText, buttonText, contentTitle, contentBody)}>{buttonText}</Button>
     </Box>
   );

@@ -23,8 +23,8 @@ const LoginForm = ({ onEmailSubmit, disabled }: Props) => {
           <Input placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div>
-          <Button colorScheme="lime" size="sm" disabled={disabled} onClick={handleSubmit}>
-            Send Magic Link
+          <Button size="sm" disabled={disabled} onClick={handleSubmit}>
+            Log In
           </Button>
         </div>
       </form>

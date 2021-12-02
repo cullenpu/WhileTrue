@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Spinner } from '@chakra-ui/react';
 
 import { getUserInfo } from './api/user';
 import { UserContext, initialUser } from './lib/UserContext';
@@ -34,7 +35,7 @@ const App = () => {
   return (
     <>
       {loading ? (
-        <div>loading</div>
+        <Spinner />
       ) : (
         <UserContext.Provider value={{ user, setUser }}>
           <Router>

@@ -22,7 +22,7 @@ export const Dashboard = () => {
   return (
     <div>
       <Center m="10">
-        <Heading>DASHBOARD</Heading>
+        <Heading>Dashboard</Heading>
       </Center>
       <SavedContentTable content={content} />
     </div>
