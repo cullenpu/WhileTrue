@@ -16,9 +16,9 @@ const SavedContentTable = (props: { content: ContentCard[] }) => {
   const { content } = props;
   return (
     <div style={{ margin: '5% 10%' }}>
-      <Grid templateColumns="repeat(2, 1fr)" width="100%" gap="50%">
+      <Grid templateColumns="repeat(2, 1fr)" width="100%" gap="50%" mb="30px">
         <Text fontSize="3xl">Saved Content</Text>
-        <Input placeholder="Search" />
+        {/* <Input placeholder="Search" /> */}
       </Grid>
 
       <Center>
