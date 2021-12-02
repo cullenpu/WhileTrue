@@ -1,15 +1,12 @@
 import createAxiosInstance from './axios';
-import { ContentCard } from '../components/typings';
 
 const generateContent = async (offerId: number, clientSegmentId: number, seed: string) => {
   // use GPT-3 API to generate personalized content
   try {
     const instance = createAxiosInstance();
     const res = await instance.post('/generate-copy', { clientSegmentId, offerId, seed });
-    const generatedContent = (res.data as any).copy;
-    const fullContent = { contentTitle: seed, contentBody: generatedContent } as ContentCard;
-    console.log(fullContent);
-    return [fullContent];
+    const generatedContent = res.data as any;
+    return generatedContent;
   } catch (err) {
     console.log(err);
     return [];

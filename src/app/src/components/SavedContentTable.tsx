@@ -4,11 +4,10 @@ import { ContentCard } from './typings';
 
 const SavedContentCard = ({ contentTitle, contentBody }: ContentCard) => {
   return (
-    <Box mb="20px" p="30px" border="1px" borderRadius="3%" borderColor="gray.200">
-      <Text fontSize="lg" mb="30px">
-        {contentTitle}
+    <Box mb="20px" p="30px" border="1px" borderRadius="5" borderColor="blue.500">
+      <Text fontSize="lg" m="20px">
+        {contentBody}
       </Text>
-      <Text fontSize="sm">{contentBody}</Text>
     </Box>
   );
 };
@@ -17,9 +16,9 @@ const SavedContentTable = (props: { content: ContentCard[] }) => {
   const { content } = props;
   return (
     <div style={{ margin: '5% 10%' }}>
-      <Grid templateColumns="repeat(2, 1fr)" width="100%" gap="50%">
+      <Grid templateColumns="repeat(2, 1fr)" width="100%" gap="50%" mb="30px">
         <Text fontSize="3xl">Saved Content</Text>
-        <Input placeholder="Search" />
+        {/* <Input placeholder="Search" /> */}
       </Grid>
 
       <Center>

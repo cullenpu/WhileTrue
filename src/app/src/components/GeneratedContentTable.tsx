@@ -4,12 +4,10 @@ import { useState } from 'react';
 import { postData } from '../api/data';
 import { ContentCard } from './typings';
 
-function handleSave(setButtonText: Function, buttonText: string, contentTitle: string, contentBody: string) {
+function handleSave(setButtonText: Function, buttonText: string, contentBody: string, contentTitle?: string) {
   if (buttonText === 'Save') {
     postData('content', { contentTitle, contentBody });
-    setButtonText('Unsave');
-  } else {
-    setButtonText('Save');
+    setButtonText('Saved');
   }
 }
 
@@ -20,10 +18,7 @@ const GeneratedContentCard = ({ contentTitle, contentBody }: ContentCard) => {
       <Text fontSize="lg" mb="30px">
         {contentBody}
       </Text>
-      <Text fontSize="sm" mb="30px">
-        Prompt: {contentTitle}
-      </Text>
-      <Button onClick={() => handleSave(setButtonText, buttonText, contentTitle, contentBody)}>{buttonText}</Button>
+      <Button onClick={() => handleSave(setButtonText, buttonText, contentBody, contentTitle)}>{buttonText}</Button>
     </Box>
   );
 };

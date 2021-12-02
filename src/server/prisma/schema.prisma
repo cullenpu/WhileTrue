@@ -21,8 +21,8 @@ model Content {
   id           Int     @id @default(autoincrement())
   user         User?   @relation(fields: [userId], references: [id])
   userId       String?
-  contentTitle String
-  contentText  String
+  contentTitle String?
+  contentBody  String
 }
 
 model Offer {

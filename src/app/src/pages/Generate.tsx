@@ -68,10 +68,6 @@ export const Generate = () => {
           <Link to={{ pathname: '/content', state: { offerId, clientSegmentId, keywords } }}>
             <MainButton
               buttonText="Generate"
-              // onClickHandler={async (e) => {
-              //   e.preventDefault();
-              //   setGeneratedContent(await generateContent(offerId, clientSegmentId, keywords));
-              // }}
             />
           </Link>
         ) : (
