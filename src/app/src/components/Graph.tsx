@@ -1,74 +1,120 @@
 // Import modules
+import * as React from 'react';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 
-const data1 = [{
-    "Offer Type": "Type a",
-    "Number of offers": 1
-  }, {
-    "Offer Type": "Type b",
-    "Number of offers": 2
-  }, {
-    "Offer Type": "Type c",
-    "Number of offers": 3
-  }, {
-    "Offer Type": "Type d",
-    "Number of offers": 1
-  }, {
-    "Offer Type": "Type e",
-    "Number of offers": 1
-  }];
+// import { getData } from '../api/data';
+import { Offer } from './typings';
+
+// const data1 = [{
+//     "type": "Type a",
+//     "occurance": 1
+//   }, {
+//     "type": "Type b",
+//     "occurance": 2
+//   }, {
+//     "type": "Type c",
+//     "occurance": 3
+//   }, {
+//     "type": "Type d",
+//     "occurance": 1
+//   }, {
+//     "type": "Type e",
+//     "occurance": 1
+//   }];
 
 const data2 = [{
     "Month": "Jan",
-    "usage": 501
+    "saved offer": 501
   }, {
     "Month": "Feb",
-    "usage": 301
+    "saved offer": 301
   }, {
     "Month": "Mar",
-    "usage": 201
+    "saved offer": 201
   }, {
     "Month": "Apr",
-    "usage": 165
+    "saved offer": 165
   }, {
     "Month": "May",
-    "usage": 139
+    "saved offer": 139
   }, {
     "Month": "Jun",
-    "usage": 128
+    "saved offer": 128
   }, {
     "Month": "Jul",
-    "usage": 501
+    "saved offer": 501
   }, {
     "Month": "Aug",
-    "usage": 301
+    "saved offer": 301
   }, {
     "Month": "Sep",
-    "usage": 201
+    "saved offer": 201
   }, {
     "Month": "Oct",
-    "usage": 165
+    "saved offer": 165
   }, {
     "Month": "Nov",
-    "usage": 139
+    "saved offer": 139
   }, {
     "Month": "Dec",
-    "usage": 128
+    "saved offer": 128
   }];
 
 
-const Graph = () => {
-        // Create chart instance
+const Graph = (props: { offers: Offer[] }) => {
+    const { offers } = props;
+    const map = new Map<string, number>();
+    
+    for (let i = 0; i < offers.length; i+=1){
+        const k = offers[i].type;
+        const val = map.get(k);
+        if (map.has(k)){
+            if (val){
+                map.set(k, val + 1)
+            }           
+        } else{
+            map.set(k, 1)
+        }
+    };
+    console.log('map', map);
+
+    const clean: { type: string; occurance: number; }[] = [];
+    map.forEach((value: number, key: string) => {
+        clean.push({"type": key, "occurance": value});
+    });
+
+    console.log('clean', clean);
+  
+    // const [offers, setOffers] = React.useState([]);
+
+    // const getDataFromApi = async () => {
+    //     try {
+    //       setOffers(await getData('offers'));
+    //     } catch (err) {
+    //       console.log(err);
+    //     }
+    //   };
+
+    // React.useEffect(() => {
+    //     getDataFromApi();
+    // }, []);
+    
+    // getDataFromApi();
+    // const offers = getData('offers');
+
+    // console.log("clean", clean);
+
+    // Create chart instance
     const chart = am4core.create("piediv", am4charts.PieChart);
 
     // Add data
-    chart.data = data1;
+    chart.data = clean;
 
     // Add and configure Series
     const pieSeries = chart.series.push(new am4charts.PieSeries());
-    pieSeries.dataFields.value = "Number of offers";
-    pieSeries.dataFields.category = "Offer Type";
+    pieSeries.dataFields.value = "occurance";
+    pieSeries.dataFields.category = "type";
 
 
     const chart2 = am4core.create("bardiv", am4charts.XYChart);
@@ -83,13 +129,13 @@ const Graph = () => {
     valueAxis.title.text = "Usage";
 
     const series = chart2.series.push(new am4charts.ColumnSeries());
-    series.name = "Usage";
-    series.columns.template.tooltipText = "Series: {name}\nCategory: {categoryX}\nValue: {valueY}";
+    series.name = "Saved Offer";
+    series.columns.template.tooltipText = "Series: {name}\nMonth: {categoryX}\nAmount: {valueY}";
     series.columns.template.fill = am4core.color("#424B5A"); // fill
     categoryAxis.renderer.cellStartLocation = 0.2;
     categoryAxis.renderer.cellEndLocation = 0.8;
     series.columns.template.width = am4core.percent(60);
-    series.dataFields.valueY = "usage";
+    series.dataFields.valueY = "saved offer";
     series.dataFields.categoryX = "Month";
     return (
       <div style={{ margin: '5% 10%' }}>

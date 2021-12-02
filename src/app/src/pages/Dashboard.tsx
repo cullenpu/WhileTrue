@@ -7,10 +7,14 @@ import { ContentCard } from '../components/typings';
 
 export const Dashboard = () => {
   const [content, setContent] = React.useState<ContentCard[]>([]);
+  const [offers, setOffers] = React.useState([]);
 
   const getContentFromApi = async () => {
     try {
       setContent(await getData('content'));
+
+      setOffers(await getData('offers'));
+      
     } catch (err) {
       console.log(err);
     }
@@ -26,7 +30,7 @@ export const Dashboard = () => {
         <Heading>Dashboard</Heading>
       </Center>
       <SavedContentTable content={content} />
-      <Graph />
+      <Graph offers={offers}/>
     </div>
   );
 };

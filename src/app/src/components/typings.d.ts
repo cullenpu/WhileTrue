@@ -14,3 +14,10 @@ export interface GenerateSearchBar {
   model: string;
   searchFunc: (model: string, searchTerm: string) => any;
 }
+
+export interface Offer {
+  id: number;
+  type: string;
+  offer: string;
+  userId: string;
+}
