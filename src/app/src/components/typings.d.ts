@@ -5,7 +5,6 @@ export interface ContentCard {
 
 export interface MainButtonAttr {
   buttonText: string;
-  hrefText?: string;
   onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 

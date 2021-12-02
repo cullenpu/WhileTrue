@@ -1,6 +1,7 @@
 import { Button, Center, Flex, FormLabel, Heading, Input, SimpleGrid, Spacer } from '@chakra-ui/react';
 import { useState } from 'react';
-import { generateContent, searchDataByModel } from '../api/generateContent';
+import { Link } from 'react-router-dom';
+import { searchDataByModel } from '../api/generateContent';
 import GenContentSearchBar from '../components/GenContentSearchBar';
 import { MainButton } from '../components/MainButton';
 
@@ -58,14 +59,15 @@ export const Generate = () => {
         />
         <Spacer />
         {offerId !== -1 && clientSegmentId !== -1 ? (
-          <MainButton
-            buttonText="Generate"
-            onClickHandler={(e) => {
-              e.preventDefault();
-              generateContent(offerId, clientSegmentId, keywords);
-            }}
-            hrefText="/content"
-          />
+          <Link to={{ pathname: '/content', state: { offerId, clientSegmentId, keywords } }}>
+            <MainButton
+              buttonText="Generate"
+              // onClickHandler={async (e) => {
+              //   e.preventDefault();
+              //   setGeneratedContent(await generateContent(offerId, clientSegmentId, keywords));
+              // }}
+            />
+          </Link>
         ) : (
           <Button width="165px" height="40px" isDisabled>
             Select Data
