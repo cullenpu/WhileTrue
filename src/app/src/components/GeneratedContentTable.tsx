@@ -18,9 +18,6 @@ const GeneratedContentCard = ({ contentTitle, contentBody }: ContentCard) => {
       <Text fontSize="lg" mb="30px">
         {contentBody}
       </Text>
-      <Text fontSize="sm" mb="30px">
-        Prompt: {contentTitle}
-      </Text>
       <Button onClick={() => handleSave(setButtonText, buttonText, contentBody, contentTitle)}>{buttonText}</Button>
     </Box>
   );
