@@ -4,11 +4,10 @@ import { ContentCard } from './typings';
 
 const SavedContentCard = ({ contentTitle, contentBody }: ContentCard) => {
   return (
-    <Box mb="20px" p="30px" border="1px" borderRadius="3%" borderColor="gray.200">
-      <Text fontSize="lg" mb="30px">
-        {contentTitle}
+    <Box mb="20px" p="30px" border="1px" borderRadius="5" borderColor="blue.500">
+      <Text fontSize="lg" m="20px">
+        {contentBody}
       </Text>
-      <Text fontSize="sm">{contentBody}</Text>
     </Box>
   );
 };

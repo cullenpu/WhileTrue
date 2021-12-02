@@ -1,4 +1,4 @@
-import { Center, Heading, Link } from '@chakra-ui/react';
+import { Center, Heading, Link, Spinner } from '@chakra-ui/react';
 import * as React from 'react';
 import { useLocation } from 'react-router';
 import { generateContent } from '../api/generateContent';
@@ -35,12 +35,16 @@ export const Content = () => {
       <Center m="10">
         <Heading>Personalized Content</Heading>
       </Center>
-      <GeneratedContentTable content={generatedContent} />
-      <div style={{ margin: '5% 10%' }}>
+      <div style={{ margin: '0 0 0 10%' }}>
         <Link href="/generate">
           <MainButton buttonText="BACK" />
         </Link>
       </div>
+      {generatedContent.length === 0 ? (
+        <Spinner style={{ margin: '20% 50%' }} />
+      ) : (
+        <GeneratedContentTable content={generatedContent} />
+      )}
     </div>
   );
 };
