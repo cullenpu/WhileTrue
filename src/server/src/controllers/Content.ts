@@ -24,7 +24,7 @@ const generateCopy = async (req: Request, res: Response) => {
         audience: clientsegments[0].segment,
         seed,
       });
-      copies.push({ contentBody: copy });
+      copies.push({ contentBody: copy, clientSegmentId, offerId, seed });
     }
 
     res.json(copies);
