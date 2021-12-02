@@ -2,6 +2,7 @@ import { Center, Heading } from '@chakra-ui/react';
 import * as React from 'react';
 import { getData } from '../api/data';
 import SavedContentTable from '../components/SavedContentTable';
+import Graph from '../components/Graph';
 import { ContentCard } from '../components/typings';
 
 export const Dashboard = () => {
@@ -25,6 +26,7 @@ export const Dashboard = () => {
         <Heading>Dashboard</Heading>
       </Center>
       <SavedContentTable content={content} />
+      <Graph />
     </div>
   );
 };
