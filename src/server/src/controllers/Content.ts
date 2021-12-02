@@ -1,9 +1,8 @@
+import { PrismaClient } from '@prisma/client';
 import { logger } from '@sentry/utils';
 import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
-
-import { getOfferAndClientSegmentForUser } from '../lib/prisma';
 import generateCopyUsingGPT3 from '../lib/gpt3';
+import { getOfferAndClientSegmentForUser } from '../lib/prisma';
 
 const prisma = new PrismaClient();
 
@@ -32,4 +31,4 @@ const generateCopy = async (req: Request, res: Response) => {
   }
 };
 
-export { generateCopy };
+export default generateCopy;

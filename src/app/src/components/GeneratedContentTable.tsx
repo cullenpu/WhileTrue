@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { postData } from '../api/data';
 import { ContentCard } from './typings';
 
-function HandleSave(setButtonText: Function, buttonText: string, contentTitle: string, contentBody: string) {
+function handleSave(setButtonText: Function, buttonText: string, contentTitle: string, contentBody: string) {
   if (buttonText === 'Save') {
     postData('content', { contentTitle, contentBody });
     setButtonText('Unsave');
@@ -21,7 +21,7 @@ const GeneratedContentCard = ({ contentTitle, contentBody }: ContentCard) => {
         {contentTitle}
       </Text>
       <Text fontSize="sm">{contentBody}</Text>
-      <Button onClick={() => HandleSave(setButtonText, buttonText, contentTitle, contentBody)}>{buttonText}</Button>
+      <Button onClick={() => handleSave(setButtonText, buttonText, contentTitle, contentBody)}>{buttonText}</Button>
     </Box>
   );
 };

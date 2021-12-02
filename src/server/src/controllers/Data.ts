@@ -1,8 +1,7 @@
-import { Request, Response } from 'express';
-import { logger } from '@sentry/utils';
 import { PrismaClient } from '@prisma/client';
-
-import { getDataForUser, saveDataForUser, PrismaModel } from '../lib/prisma';
+import { logger } from '@sentry/utils';
+import { Request, Response } from 'express';
+import { getDataForUser, PrismaModel, saveDataForUser, searchData } from '../lib/prisma';
 
 const prisma = new PrismaClient();
 
@@ -32,4 +31,16 @@ const saveData = async (req: Request, res: Response, modelToAccess: string) => {
   }
 };
 
-export { prismaModels, getData, saveData };
+const searchDataByModel = async (req: Request, res: Response, modelToAccess: string) => {
+  try {
+    const searchTerm = req.params.searchTerm;
+    const searchResults = await searchData(prismaModels[modelToAccess], searchTerm);
+    console.log(searchResults);
+    res.json(searchResults);
+  } catch (error) {
+    logger.log(`Error searching ${modelToAccess}`, { level: 'error', meta: { user: req.user.email, error } });
+    res.status(500).json({ message: `Error searching ${modelToAccess}` });
+  }
+};
+
+export { prismaModels, getData, saveData, searchDataByModel };

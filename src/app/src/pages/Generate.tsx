@@ -1,39 +1,14 @@
 import { Button, Center, Flex, FormLabel, Heading, Input, SimpleGrid, Spacer } from '@chakra-ui/react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { searchDataByModel } from '../api/generateContent';
+import GenContentSearchBar from '../components/GenContentSearchBar';
 import { MainButton } from '../components/MainButton';
-import { GenerateSearchBar } from '../components/typings';
-
-const GenSearch = ({ barText, onChangeHandler }: GenerateSearchBar) => {
-  return (
-    <Flex experimental_spaceX="50px">
-      <MainButton buttonText="SEARCH" hrefText="/Dashboard" />
-      <Input
-        onChange={onChangeHandler}
-        placeholder={barText}
-        width="900px"
-        height="40px"
-        color="#D8D8D8"
-        textAlign="center"
-        backgroundColor="#424B5A"
-      />
-    </Flex>
-  );
-};
-
-const generateContent = async (offer: string, clientSegment: string, languageType: string) => {
-  console.log(offer, clientSegment, languageType);
-
-
-  
-  // TODO: use GPT-3 API to generate personalized content
-
-
-
-};
 
 export const Generate = () => {
-  const [offer, setOffer] = useState('');
-  const [clientSegment, setClientSegment] = useState('');
+  const [offerId, setOfferId] = useState(-1);
+  const [clientSegmentId, setClientSegmentId] = useState(-1);
+  const [keywords, setKeywords] = useState('');
   const [languageType, setLanguageType] = useState('Friendly');
 
   return (
@@ -46,23 +21,30 @@ export const Generate = () => {
         <Center>
           <SimpleGrid columns={1} rowGap={3} w="full">
             <FormLabel fontSize="2xl">Offer</FormLabel>
-            <GenSearch
-              barText="Search for an offer here"
-              onChangeHandler={(e) => {
-                setOffer(e.target.value);
-              }}
+            <GenContentSearchBar
+              placeholder="Search for an offer here"
+              setDataId={setOfferId}
+              model="offers"
+              searchFunc={searchDataByModel}
             />
 
             <FormLabel fontSize="2xl">Client Segment</FormLabel>
-            <GenSearch
-              barText="Search for a client segment here"
-              onChangeHandler={(e) => {
-                setClientSegment(e.target.value);
-              }}
+            <GenContentSearchBar
+              placeholder="Search for a client segment here"
+              setDataId={setClientSegmentId}
+              model="clients"
+              searchFunc={searchDataByModel}
             />
 
             <FormLabel fontSize="2xl">Keyword Prompt</FormLabel>
-            <Input placeholder="Enter any other keywords you want to prompt the AI with" h="146px" color="#A1AEB7" />
+            <Input
+              placeholder="Enter any other keywords you want to prompt the AI with"
+              h="146px"
+              color="#A1AEB7"
+              onChange={(e) => {
+                setKeywords(e.target.value);
+              }}
+            />
           </SimpleGrid>
         </Center>
       </div>
@@ -76,15 +58,16 @@ export const Generate = () => {
           }}
         />
         <Spacer />
-        {offer && clientSegment ? (
-          <MainButton
-            buttonText="Generate"
-            onClickHandler={(e) => {
-              e.preventDefault();
-              generateContent(offer, clientSegment, languageType);
-            }}
-            hrefText="/content"
-          />
+        {offerId !== -1 && clientSegmentId !== -1 ? (
+          <Link to={{ pathname: '/content', state: { offerId, clientSegmentId, keywords } }}>
+            <MainButton
+              buttonText="Generate"
+              // onClickHandler={async (e) => {
+              //   e.preventDefault();
+              //   setGeneratedContent(await generateContent(offerId, clientSegmentId, keywords));
+              // }}
+            />
+          </Link>
         ) : (
           <Button width="165px" height="40px" isDisabled>
             Select Data

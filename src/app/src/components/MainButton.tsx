@@ -1,9 +1,8 @@
-import { Button, Link } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { MainButtonAttr } from './typings';
 
-export const MainButton = ({ buttonText, hrefText, onClickHandler }: MainButtonAttr) => {
+export const MainButton = ({ buttonText, onClickHandler }: MainButtonAttr) => {
   return (
-    <Link href={hrefText}>
       <Button
         width="165px"
         height="40px"
@@ -15,6 +14,5 @@ export const MainButton = ({ buttonText, hrefText, onClickHandler }: MainButtonA
       >
         {buttonText}
       </Button>
-    </Link>
   );
 };

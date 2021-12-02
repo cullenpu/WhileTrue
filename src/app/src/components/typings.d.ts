@@ -5,11 +5,12 @@ export interface ContentCard {
 
 export interface MainButtonAttr {
   buttonText: string;
-  hrefText?: string;
   onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export interface GenerateSearchBar {
-  barText: string;
-  onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
+  setDataId: (data: number) => void;
+  model: string;
+  searchFunc: (model: string, searchTerm: string) => any;
 }
