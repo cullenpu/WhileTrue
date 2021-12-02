@@ -38,13 +38,7 @@ export const Content = () => {
       <GeneratedContentTable content={generatedContent} />
       <div style={{ margin: '5% 10%' }}>
         <Link href="/generate">
-          <MainButton
-            buttonText="Back"
-            // onClickHandler={(e) => {
-            //   e.preventDefault();
-            //   setGeneratedContent([]);
-            // }}
-          />
+          <MainButton buttonText="BACK" />
         </Link>
       </div>
     </div>

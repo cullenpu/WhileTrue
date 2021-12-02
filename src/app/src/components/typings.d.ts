@@ -1,5 +1,5 @@
 export interface ContentCard {
-  contentTitle: string;
+  contentTitle?: string;
   contentBody: string;
 }
 

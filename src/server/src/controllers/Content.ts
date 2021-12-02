@@ -16,14 +16,18 @@ const generateCopy = async (req: Request, res: Response) => {
       offerId,
       req.user.email,
     );
-    const copy = await generateCopyUsingGPT3({
-      description: offers[0].offer,
-      type: offers[0].type,
-      audience: clientsegments[0].segment,
-      seed,
-    });
+    const copies = [];
+    for (let i = 0; i < 3; i++) {
+      const copy = await generateCopyUsingGPT3({
+        description: offers[0].offer,
+        type: offers[0].type,
+        audience: clientsegments[0].segment,
+        seed,
+      });
+      copies.push({ contentBody: copy });
+    }
 
-    res.json({ offerId, clientSegmentId, seed, copy });
+    res.json(copies);
   } catch (error) {
     console.log(error);
     logger.log('Error saving content', { level: 'error', meta: { user: req.user.email, error } });
