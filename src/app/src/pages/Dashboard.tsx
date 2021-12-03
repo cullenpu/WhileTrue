@@ -29,8 +29,10 @@ export const Dashboard = () => {
       <Center m="10">
         <Heading>Dashboard</Heading>
       </Center>
-      <SavedContentTable content={content} />
+
       <Graph offers={offers}/>
+      <SavedContentTable content={content} />
+
     </div>
   );
 };

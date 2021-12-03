@@ -14,6 +14,7 @@ const SavedContentCard = ({ contentTitle, contentBody }: ContentCard) => {
 
 const SavedContentTable = (props: { content: ContentCard[] }) => {
   const { content } = props;
+  console.log( 'content', content);
   return (
     <div style={{ margin: '5% 10%' }}>
       <Grid templateColumns="repeat(2, 1fr)" width="100%" gap="50%" mb="30px">
