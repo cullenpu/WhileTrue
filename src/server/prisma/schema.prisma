@@ -20,6 +20,7 @@ model User {
 model Content {
   id           Int     @id @default(autoincrement())
   user         User?   @relation(fields: [userId], references: [id])
+  time         DateTime @default(now())
   userId       String?
   contentTitle String?
   contentBody  String
