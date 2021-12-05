@@ -3,6 +3,11 @@ export interface ContentCard {
   contentBody: string;
 }
 
+export interface ContentDate {
+  contentBody: string;
+  time: DateTime;
+}
+
 export interface MainButtonAttr {
   buttonText: string;
   onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
