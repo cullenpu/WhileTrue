@@ -4,7 +4,7 @@ import { ContentCard } from './typings';
 
 const SavedContentCard = ({ contentTitle, contentBody, time }: ContentCard) => {
   return (
-    <Box mb="20px" p="30px" border="1px" borderRadius="5" borderColor="blue.500">
+    <Box mb="20px" p="30px" border="1px" borderRadius="5" borderColor="blue.500" data-testid="saved-content-card">
       <Text fontSize="lg" m="20px">
         {contentBody}
       </Text>
@@ -15,7 +15,7 @@ const SavedContentCard = ({ contentTitle, contentBody, time }: ContentCard) => {
 const SavedContentTable = (props: { content: ContentCard[] }) => {
   const { content } = props;
   return (
-    <div style={{ margin: '5% 10%' }}>
+    <div style={{ margin: '5% 10%' }} data-testid="saved-content-table">
       <Grid templateColumns="repeat(2, 1fr)" width="100%" gap="50%" mb="30px">
         <Text fontSize="3xl">Saved Content</Text>
         {/* <Input placeholder="Search" /> */}

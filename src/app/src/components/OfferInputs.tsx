@@ -1,6 +1,5 @@
-import { useState } from 'react';
-
 import { Button, Flex, Input, Spacer, Textarea } from '@chakra-ui/react';
+import { useState } from 'react';
 
 interface Props {
   onOfferSave: Function;
@@ -19,6 +18,7 @@ const OfferInputs = ({ onOfferSave }: Props) => {
           maxH="250"
           value={offerDescription}
           onChange={(e) => setOfferDescription(e.target.value)}
+          data-testid="offer-description"
         />
       </Flex>
       <Flex mb="5">
@@ -28,9 +28,10 @@ const OfferInputs = ({ onOfferSave }: Props) => {
           size="lg"
           value={offerType}
           onChange={(e) => setOfferType(e.target.value)}
+          data-testid="offer-type"
         />
         <Spacer />
-        <Button size="lg" onClick={() => onOfferSave(offerDescription, offerType)}>
+        <Button size="lg" onClick={() => onOfferSave(offerDescription, offerType)} data-testid="save">
           Add
         </Button>
       </Flex>

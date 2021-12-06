@@ -17,11 +17,15 @@ const LoginForm = ({ onEmailSubmit, disabled }: Props) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} data-testid="login-form">
         <h3 className="form-header">Login</h3>
-        <div className="input-wrapper">
-          <Input placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </div>
+        <Input
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{ width: '80%', margin: '0 auto 20px' }}
+          data-testid="email"
+        />
         <div>
           <Button size="sm" disabled={disabled} onClick={handleSubmit}>
             Log In
@@ -38,10 +42,6 @@ const LoginForm = ({ onEmailSubmit, disabled }: Props) => {
         .form-header {
           font-size: 22px;
           margin: 25px 0;
-        }
-        .input-wrapper {
-          width: 80%;
-          margin: 0 auto 20px;
         }
       `}</style>
     </>

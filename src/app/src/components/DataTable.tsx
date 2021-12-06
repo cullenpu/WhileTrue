@@ -1,4 +1,4 @@
-import { Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
+import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 
 interface Props {
   columns: { [key: string]: string };
@@ -6,10 +6,8 @@ interface Props {
 }
 
 const DataTable = ({ columns, data }: Props) => {
-  console.log(columns);
-  console.log(data);
   return (
-    <div>
+    <div data-testid="data-table">
       <Table variant="simple">
         <Thead>
           <Tr>
@@ -20,7 +18,7 @@ const DataTable = ({ columns, data }: Props) => {
         </Thead>
         <Tbody>
           {data.map((row) => (
-            <Tr>
+            <Tr key={row.id} data-testid="data-table-row">
               {Object.keys(columns).map((key) => {
                 return <Td key={key}>{row[key]}</Td>;
               })}
