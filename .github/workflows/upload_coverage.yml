@@ -1,4 +1,4 @@
-name: Upload Coverage
+name: Run Tests and Upload Coverage
 
 on:
   push:
@@ -6,13 +6,33 @@ on:
       - master
 
 jobs:
-  upload_cov:
-    uses: paambaati/codeclimate-action@v3.0.0
-    env:
-      CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
-    with:
-      coverageCommand: yarn run coverage
-      workingDirectory: ${{github.workspace}}/src/
-      coverageLocations: |
-        ${{github.workspace}}/src/app/coverage/lcov.info:lcov
-        ${{github.workspace}}/src/server/coverage/lcov.info:lcov
+  coverage:
+    name: coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Install modules
+        run: npm install-all
+        working-directory: ./src/
+      # - name: Run tests
+      #   run: npm run test
+      #   working-directory: ./src/
+      #   env:
+      #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      #     REACT_APP_MAGIC_PUBLISHABLE_KEY: ${{ secrets.REACT_APP_MAGIC_PUBLISHABLE_KEY }}
+      - uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          REACT_APP_MAGIC_PUBLISHABLE_KEY: ${{ secrets.REACT_APP_MAGIC_PUBLISHABLE_KEY }}
+        with:
+          coverageCommand: npm run test
+          workingDirectory: ${{github.workspace}}/src/
+          coverageLocations: |
+            ${{github.workspace}}/src/app/coverage/lcov.info:lcov
+            ${{github.workspace}}/src/server/coverage/lcov.info:lcov
+                  env:

@@ -2,7 +2,7 @@ name: Deploy to Railway
 
 on:
   workflow_run:
-    workflows: ['Run Tests']
+    workflows: ['Run Tests and Upload Coverage']
     branches: [master]
     types:
       - completed
