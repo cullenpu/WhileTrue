@@ -1,7 +1,13 @@
 export interface ContentCard {
   contentTitle?: string;
   contentBody: string;
+  time: DateTime;
 }
+
+// export interface ContentDate {
+//   contentBody: string;
+//   time: DateTime;
+// }
 
 export interface MainButtonAttr {
   buttonText: string;
