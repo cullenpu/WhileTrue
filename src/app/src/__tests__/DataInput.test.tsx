@@ -33,7 +33,7 @@ describe('<DataInput />', () => {
     });
 
     const dataTable = queryAllByTestId('data-table');
-    expect(dataTable.length).toBe(0);
+    expect(dataTable).toHaveLength(0);
   });
 });
 
@@ -81,15 +81,15 @@ describe('<DataTable />', () => {
     };
     const { getAllByTestId } = render(<DataTable {...offerTableProps} />);
     const dataTableRow = getAllByTestId('data-table-row');
-    expect(dataTableRow.length).toBe(data.length);
+    expect(dataTableRow).toHaveLength(data.length);
   });
 
   it('should display client segment data', () => {
     const columns = { segment: 'Client Segment' };
     const data = [
-      { id: '0', segment: 'segment0', userId: '0' },
       { id: '1', segment: 'segment1', userId: '1' },
       { id: '2', segment: 'segment2', userId: '2' },
+      { id: '3', segment: 'segment3', userId: '3' },
     ];
     const clientTableProps = {
       columns,
@@ -97,6 +97,6 @@ describe('<DataTable />', () => {
     };
     const { getAllByTestId } = render(<DataTable {...clientTableProps} />);
     const dataTableRow = getAllByTestId('data-table-row');
-    expect(dataTableRow.length).toBe(data.length);
+    expect(dataTableRow).toHaveLength(data.length);
   });
 });

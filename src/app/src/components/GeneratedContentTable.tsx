@@ -30,7 +30,7 @@ const GeneratedContentTable = (props: { content: ContentCard[] }) => {
       <Center>
         <Grid width="100%">
           {content.map((c) => (
-            <div>
+            <div data-testid="gen-content-card">
               <GeneratedContentCard contentTitle={c.contentTitle} contentBody={c.contentBody} time={c.time} />
             </div>
           ))}

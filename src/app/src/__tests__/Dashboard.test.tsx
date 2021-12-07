@@ -49,7 +49,7 @@ describe('<Dashboard />', () => {
     });
 
     const dataTable = queryAllByTestId('data-table');
-    expect(dataTable.length).toBe(0);
+    expect(dataTable).toHaveLength(0);
   });
 });
 
@@ -57,6 +57,6 @@ describe('<SavedContentTable />', () => {
   it(`should render ${content.length} content cards`, () => {
     const { getAllByTestId } = render(<SavedContentTable {...contentTableProps} />);
     const savedContentCard = getAllByTestId('saved-content-card');
-    expect(savedContentCard.length).toBe(content.length);
+    expect(savedContentCard).toHaveLength(content.length);
   });
 });
