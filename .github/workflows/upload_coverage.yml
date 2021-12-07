@@ -27,7 +27,7 @@ jobs:
           REACT_APP_MAGIC_PUBLISHABLE_KEY: ${{ secrets.REACT_APP_MAGIC_PUBLISHABLE_KEY }}
       - name: 'Upload to CodeClimate'
         env:
-          CC_TEST_REPORTER_ID: $${{secrets.CC_TEST_REPORTER_ID}}
+          CC_TEST_REPORTER_ID: 6907d0c3a2e467c3581c6406cbdc7c3a00c715d5ac3795a41635269b2a7064a2
         run: |
           export GIT_BRANCH="${GITHUB_REF##*/}"
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -39,5 +39,5 @@ jobs:
           ../cc-test-reporter format-coverage coverage/lcov.info -t lcov
           cd ..
           ./cc-test-reporter sum-coverage ./app/coverage/codeclimate.json ./server/coverage/codeclimate.json -o sum.json
-          ./cc-test-reporter upload-coverage -i sum.json --id ${{ env.CC_TEST_REPORTER_ID }} -d
+          ./cc-test-reporter upload-coverage -i sum.json --id $CC_TEST_REPORTER_ID -d
         working-directory: ./src/
