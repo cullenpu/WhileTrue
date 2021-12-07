@@ -3,15 +3,16 @@ import * as React from 'react';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_patterns from "@amcharts/amcharts4/themes/patterns";
+import { Text } from '@chakra-ui/layout';
 
-import { Offer, ContentDate } from './typings';
+import { Offer, ContentCard } from './typings';
 
 
 am4core.useTheme(am4themes_patterns);
 
 
 
-const Graph = (props: { offers: Offer[], content: ContentDate[]}) => {
+const Graph = (props: { offers: Offer[], content: ContentCard[]}) => {
     const { offers, content } = props;
 
     const map = new Map<string, number>();
@@ -127,9 +128,11 @@ const Graph = (props: { offers: Offer[], content: ContentDate[]}) => {
     series.dataFields.valueY = "usage";
     series.dataFields.categoryX = "month";
     return (
-      <div style={{ margin: '5% 10%' }}>
-        <div className="piediv" />
-        <div className="bardiv" />
+        <div style={{ margin: '5% 10%' }}>
+          <Text fontSize="3xl">Types of Offers</Text>
+          <div className="piediv" />
+          <Text fontSize="3xl" style={{ marginTop: '5%' }} >Usage of Saved Content</Text>
+          <div className="bardiv" />
       </div>
     );
   };
