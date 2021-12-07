@@ -33,8 +33,8 @@ describe('<Content />', () => {
 describe('<GeneratedContentTable />', () => {
   it('should display generated content', () => {
     const content = [
-      { clientSegmentId: '1', contentBody: 'content1', offerId: '1', seed: 'seed1' },
-      { clientSegmentId: '2', contentBody: 'content2', offerId: '2', seed: 'seed2' },
+      { clientSegmentId: '1', contentBody: 'content1', offerId: '1', seed: 'seed1', time: '1' },
+      { clientSegmentId: '2', contentBody: 'content2', offerId: '2', seed: 'seed2', time: '2' },
     ];
     const contentTableProps = {
       content,

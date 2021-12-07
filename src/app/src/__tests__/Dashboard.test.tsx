@@ -12,11 +12,13 @@ const content = [
     id: '1',
     contentTitle: 'title1',
     contentBody: 'body1',
+    time: '1',
   },
   {
     id: '2',
     contentTitle: 'title2',
     contentBody: 'body2',
+    time: '2',
   },
 ];
 
@@ -24,7 +26,7 @@ const contentTableProps = {
   content,
 };
 
-// Mocking the dashboard as amCharts cannot be used with jest
+// Mocking the graph as amCharts cannot be used with jest
 // See https://www.amcharts.com/docs/v4/getting-started/using-typescript-or-es6/#Using_amCharts_with_Jest
 jest.mock('../components/Graph', () => () => <div data-testid="graph">Graph</div>);
 
@@ -46,8 +48,8 @@ describe('<Dashboard />', () => {
       expect(mockAxios.get).toHaveBeenCalledTimes(1);
     });
 
-    const dataTable = queryAllByTestId('data-table');
-    expect(dataTable).toHaveLength(0);
+    const savedContentCard = queryAllByTestId('saved-content-card');
+    expect(savedContentCard).toHaveLength(0);
   });
 });
 

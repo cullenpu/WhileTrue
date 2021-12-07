@@ -24,7 +24,7 @@ const SavedContentTable = (props: { content: ContentCard[] }) => {
       <Center>
         <Grid width="100%">
           {content.map((c) => (
-            <div>
+            <div key={c.contentBody}>
               <SavedContentCard contentTitle={c.contentTitle} contentBody={c.contentBody} time={c.time} />
             </div>
           ))}

@@ -49,7 +49,6 @@ const GenContentSearchBar = ({ placeholder, setDataId, model, searchFunc }: Gene
         placeholder={placeholder}
         options={searchResults}
         onChange={handleChange}
-        data-testid="gen-search-bar"
         styles={{
           control: (base, _) => ({
             ...base,

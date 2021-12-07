@@ -5,7 +5,7 @@ import { Spinner } from '@chakra-ui/react';
 import { getUserInfo } from './api/user';
 import { UserContext, initialUser } from './lib/UserContext';
 import './App.css';
-import routes from './routes';
+import routes from './appRoutes';
 import AppRoute from './components/AppRoutes';
 import Nav from './components/Nav';
 
