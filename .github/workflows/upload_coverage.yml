@@ -24,7 +24,7 @@ jobs:
         working-directory: ./src/
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          REACT_APP_MAGIC_PUBLISHABLE_KEY: ${{ secrets.REACT_APP_MAGIC_PUBLISHABLE_KEY }
+          REACT_APP_MAGIC_PUBLISHABLE_KEY: ${{ secrets.REACT_APP_MAGIC_PUBLISHABLE_KEY }}
       - name: 'Upload to CodeClimate'
         env:
           CC_TEST_REPORTER_ID: $${{secrets.CC_TEST_REPORTER_ID}}
