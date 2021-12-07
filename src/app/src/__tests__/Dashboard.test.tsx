@@ -37,14 +37,12 @@ describe('<Dashboard />', () => {
     expect(savedContentTable).toBeInTheDocument();
   });
 
-  it("should fetch user's data", () => {
+  it("should fetch user's data", async () => {
     mockAxios.create = jest.fn(() => mockAxios);
     mockAxios.get.mockResolvedValue({ data: [] });
 
     const { queryAllByTestId } = render(<Dashboard />);
-    waitFor(() => {
-      mockAxios.create = jest.fn(() => mockAxios);
-      mockAxios.get.mockResolvedValue({ data: [] });
+    await waitFor(() => {
       expect(mockAxios.get).toHaveBeenCalledTimes(1);
     });
 

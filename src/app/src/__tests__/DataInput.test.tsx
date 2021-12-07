@@ -27,8 +27,6 @@ describe('<DataInput />', () => {
 
     const { queryAllByTestId } = render(<DataInput />);
     waitFor(() => {
-      mockAxios.create = jest.fn(() => mockAxios);
-      mockAxios.get.mockResolvedValue({ data: [] });
       expect(mockAxios.get).toHaveBeenCalledTimes(2);
     });
 
