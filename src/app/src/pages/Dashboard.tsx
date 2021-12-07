@@ -3,12 +3,12 @@ import * as React from 'react';
 import { getData } from '../api/data';
 import SavedContentTable from '../components/SavedContentTable';
 import Graph from '../components/Graph';
-import { ContentCard, ContentDate } from '../components/typings';
+import { ContentCard } from '../components/typings';
 
 export const Dashboard = () => {
   const [content, setContent] = React.useState<ContentCard[]>([]);
   const [offers, setOffers] = React.useState([]);
-  const [contentDate, setContentDate] = React.useState<ContentDate[]>([]);
+  // const [contentDate, setContentDate] = React.useState<ContentDate[]>([]);
 
   const getContentFromApi = async () => {
     try {
@@ -16,7 +16,7 @@ export const Dashboard = () => {
 
       setOffers(await getData('offers'));
 
-      setContentDate(await getData('content'));
+      // setContentDate(await getData('content'));
       
     } catch (err) {
       console.log(err);
@@ -33,7 +33,7 @@ export const Dashboard = () => {
         <Heading>Dashboard</Heading>
       </Center>
 
-      <Graph offers={offers} content={contentDate}/>
+      <Graph offers={offers} content={content}/>
       <SavedContentTable content={content} />
 
     </div>
