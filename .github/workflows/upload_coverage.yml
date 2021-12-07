@@ -19,21 +19,25 @@ jobs:
       - name: Install modules
         run: npm run install-all
         working-directory: ./src/
-      # - name: Run tests
-      #   run: npm run test
-      #   working-directory: ./src/
-      #   env:
-      #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      #     REACT_APP_MAGIC_PUBLISHABLE_KEY: ${{ secrets.REACT_APP_MAGIC_PUBLISHABLE_KEY }
-      - uses: paambaati/codeclimate-action@v3.0.0
+      - name: Run tests
+        run: npm run test
+        working-directory: ./src/
         env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          REACT_APP_MAGIC_PUBLISHABLE_KEY: ${{ secrets.REACT_APP_MAGIC_PUBLISHABLE_KEY }}
-        with:
-          coverageCommand: npm run test
-          workingDirectory: ${{github.workspace}}/src/
-          coverageLocations: |
-            ${{github.workspace}}/src/app/coverage/lcov.info:lcov
-            ${{github.workspace}}/src/server/coverage/lcov.info:lcov
-                  env:
+          REACT_APP_MAGIC_PUBLISHABLE_KEY: ${{ secrets.REACT_APP_MAGIC_PUBLISHABLE_KEY }
+      - name: 'Upload to CodeClimate'
+        env:
+          CC_TEST_REPORTER_ID: $${{secrets.CC_TEST_REPORTER_ID}}
+        run: |
+          export GIT_BRANCH="${GITHUB_REF##*/}"
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          cd app
+          ../cc-test-reporter format-coverage coverage/lcov.info -t lcov
+          cd ..
+          cd server
+          ../cc-test-reporter format-coverage coverage/lcov.info -t lcov
+          cd ..
+          ./cc-test-reporter sum-coverage ./app/coverage/codeclimate.json ./server/coverage/codeclimate.json -o sum.json
+          ./cc-test-reporter upload-coverage -i sum.json --id $CC_TEST_REPORTER_ID
+        working-directory: ./src/
