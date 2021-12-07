@@ -39,5 +39,5 @@ jobs:
           ../cc-test-reporter format-coverage coverage/lcov.info -t lcov
           cd ..
           ./cc-test-reporter sum-coverage ./app/coverage/codeclimate.json ./server/coverage/codeclimate.json -o sum.json
-          ./cc-test-reporter upload-coverage -i sum.json --id $CC_TEST_REPORTER_ID
+          ./cc-test-reporter upload-coverage -i sum.json --id ${{ env.CC_TEST_REPORTER_ID }}
         working-directory: ./src/
