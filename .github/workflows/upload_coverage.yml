@@ -1,0 +1,18 @@
+name: Upload Coverage
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  upload_cov:
+    uses: paambaati/codeclimate-action@v3.0.0
+    env:
+      CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+    with:
+      coverageCommand: yarn run coverage
+      workingDirectory: ${{github.workspace}}/src/
+      coverageLocations: |
+        ${{github.workspace}}/src/app/coverage/lcov.info:lcov
+        ${{github.workspace}}/src/server/coverage/lcov.info:lcov
