@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '14.x'
       - name: Install modules
-        run: npm install-all
+        run: npm run install-all
         working-directory: ./src/
       # - name: Run tests
       #   run: npm run test
