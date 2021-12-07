@@ -64,6 +64,9 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "coveragePathIgnorePatterns": ["<rootDir>/.*/Graph.tsx"]
+  },
   "proxy": "http://localhost:8080",
   "devDependencies": {
     "@types/js-cookie": "^3.0.0",

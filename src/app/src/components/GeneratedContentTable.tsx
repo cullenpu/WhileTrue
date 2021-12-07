@@ -14,7 +14,7 @@ function handleSave(setButtonText: Function, buttonText: string, contentBody: st
 const GeneratedContentCard = ({ contentTitle, contentBody }: ContentCard) => {
   const [buttonText, setButtonText] = useState('Save');
   return (
-    <Box mb="20px" p="30px" border="1px" borderRadius="5" borderColor="blue.500">
+    <Box mb="20px" p="30px" border="1px" borderRadius="5" borderColor="blue.500" data-testid="gen-content-card">
       <Text fontSize="lg" mb="30px">
         {contentBody}
       </Text>
@@ -30,7 +30,7 @@ const GeneratedContentTable = (props: { content: ContentCard[] }) => {
       <Center>
         <Grid width="100%">
           {content.map((c) => (
-            <div>
+            <div key={c.contentBody}>
               <GeneratedContentCard contentTitle={c.contentTitle} contentBody={c.contentBody} time={c.time} />
             </div>
           ))}

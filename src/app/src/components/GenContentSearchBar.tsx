@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Select from 'react-select';
 import { GenerateSearchBar } from './typings';
 
 const GenContentSearchBar = ({ placeholder, setDataId, model, searchFunc }: GenerateSearchBar) => {
   const [searchResults, setSearchReslts] = React.useState<any[]>([]);
+  const isRendered = useRef<boolean>(false);
 
-  React.useEffect(() => {
-    searchFunc(model, '').then((res: any) => {
+  const fetchSearchBarDataFromApi = async () => {
+    try {
+      const res = await searchFunc(model, '');
       let data = [];
       if (model === 'offers') {
         data = res.map((item: any) => {
@@ -23,9 +25,18 @@ const GenContentSearchBar = ({ placeholder, setDataId, model, searchFunc }: Gene
           };
         });
       }
-      console.log(model, data);
       setSearchReslts(data);
-    });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  React.useEffect(() => {
+    isRendered.current = true;
+    fetchSearchBarDataFromApi();
+    return () => {
+      isRendered.current = false;
+    };
   }, []);
 
   const handleChange = (selectedOption: any) => {
@@ -33,9 +44,7 @@ const GenContentSearchBar = ({ placeholder, setDataId, model, searchFunc }: Gene
   };
 
   return (
-    // <Flex experimental_spaceX="50px">
-    // <MainButton buttonText="SEARCH" hrefText="/Dashboard" />
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%' }} data-testid="gen-search-bar">
       <Select
         placeholder={placeholder}
         options={searchResults}
@@ -49,7 +58,6 @@ const GenContentSearchBar = ({ placeholder, setDataId, model, searchFunc }: Gene
         }}
       />
     </div>
-    // </Flex>
   );
 };
 
