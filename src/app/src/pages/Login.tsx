@@ -7,6 +7,27 @@ import LoginForm from '../components/LoginForm';
 
 import postLogin from '../api/login';
 
+const getDidTokenFromMagic = async (email: string) => {
+  // @ts-expect-error
+  const didToken = await magic.auth.loginWithMagicLink({
+    email,
+    redirectURI: new URL('/callback', window.location.origin).href, // optional redirect back to your app after magic link is clicked
+  });
+
+  if (!didToken) {
+    throw Error('Login failed');
+  }
+
+  const status = await postLogin(didToken, email);
+  if (status !== 200) {
+    throw Error('Failed to validate login');
+  }
+
+  // @ts-expect-error
+  const userMetadata = await magic.user.getMetadata();
+  return userMetadata;
+};
+
 export const Login = () => {
   const history = useHistory();
   const [disabled, setDisabled] = useState(false);
@@ -17,26 +38,9 @@ export const Login = () => {
     try {
       setDisabled(true); // disable login button to prevent multiple emails from being triggered
 
-      let didToken;
       // Trigger Magic link to be sent to user
       if (process.env.NODE_ENV === 'production') {
-        // @ts-expect-error
-        didToken = await magic.auth.loginWithMagicLink({
-          email,
-          redirectURI: new URL('/callback', window.location.origin).href, // optional redirect back to your app after magic link is clicked
-        });
-
-        if (!didToken) {
-          throw Error('Login failed');
-        }
-
-        const status = await postLogin(didToken, email);
-        if (status !== 200) {
-          throw Error('Failed to validate login');
-        }
-
-        // @ts-expect-error
-        const userMetadata = await magic.user.getMetadata();
+        const userMetadata = await getDidTokenFromMagic(email);
         await setUser(userMetadata);
       } else {
         const status = await postLogin(Math.random().toString(36).slice(7), email);

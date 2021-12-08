@@ -1,7 +1,7 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import React from 'react';
-import ClientSegmentInputs from '../components/ClientSegmentInputs';
+import DataInputForm from '../components/DataInputForm';
 import DataTable from '../components/DataTable';
 import OfferInputs from '../components/OfferInputs';
 import { DataInput } from '../pages/DataInput';
@@ -53,19 +53,39 @@ describe('<OfferInputs />', () => {
   });
 });
 
-describe('<ClientSegmentInputs />', () => {
+describe('<DataInputForms /> for clientSegment', () => {
   const onClientSegmentSave = jest.fn();
   const clientSegmentInputsProps = {
-    onClientSegmentSave,
+    onSave: onClientSegmentSave,
+    displayOffer: false,
   };
 
   it('should save client segments using input forms', () => {
-    const { getByTestId } = render(<ClientSegmentInputs {...clientSegmentInputsProps} />);
+    const { getByTestId } = render(<DataInputForm {...clientSegmentInputsProps} />);
     const clientSegment = getByTestId('client-segment');
     const save = getByTestId('save');
     fireEvent.change(clientSegment, { target: { value: 'test-client-segment' } });
     fireEvent.click(save);
     expect(onClientSegmentSave).toHaveBeenCalledWith('test-client-segment');
+  });
+});
+
+describe('<DataInputForms /> for offers', () => {
+  const onOfferSave = jest.fn();
+  const offerInputsProps = {
+    onSave: onOfferSave,
+    displayOffer: true,
+  };
+
+  it('should save client segments using input forms', () => {
+    const { getByTestId } = render(<DataInputForm {...offerInputsProps} />);
+    const offerDescription = getByTestId('offer-description');
+    const offerType = getByTestId('offer-type');
+    const save = getByTestId('save');
+    fireEvent.change(offerDescription, { target: { value: 'offer-description' } });
+    fireEvent.change(offerType, { target: { value: 'offer-type' } });
+    fireEvent.click(save);
+    expect(onOfferSave).toHaveBeenCalledWith('offer-description', 'offer-type');
   });
 });
 

@@ -1,7 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import React from 'react';
-import GeneratedContentTable from '../components/GeneratedContentTable';
+import ContentTable from '../components/ContentTable';
 import { Content } from '../pages/Content';
 
 jest.mock('axios');
@@ -30,17 +30,18 @@ describe('<Content />', () => {
   });
 });
 
-describe('<GeneratedContentTable />', () => {
+describe('<ContentTable />', () => {
   it('should display generated content', () => {
     const content = [
-      { clientSegmentId: '1', contentBody: 'content1', offerId: '1', seed: 'seed1', time: '1' },
-      { clientSegmentId: '2', contentBody: 'content2', offerId: '2', seed: 'seed2', time: '2' },
+      { clientSegmentId: 1, contentBody: 'content1', offerId: 1, seed: 'seed1', time: new Date(), enableSaving: false },
+      { clientSegmentId: 2, contentBody: 'content2', offerId: 2, seed: 'seed2', time: new Date(), enableSaving: false },
     ];
     const contentTableProps = {
       content,
+      enableSaving: true,
     };
-    const { getAllByTestId } = render(<GeneratedContentTable {...contentTableProps} />);
-    const genContentCard = getAllByTestId('gen-content-card');
+    const { getAllByTestId } = render(<ContentTable {...contentTableProps} />);
+    const genContentCard = getAllByTestId('content-card');
     expect(genContentCard.length).toBe(content.length);
   });
 });

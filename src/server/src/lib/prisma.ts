@@ -45,6 +45,20 @@ const saveDataForUser = async (prismaModel: PrismaModel, data: object, email: st
   });
 };
 
+const saveContent = async (prismaModel: PrismaModel, data: any, email: string) => {
+  const { seed, contentBody, offerId, clientSegmentId } = data;
+  // @ts-expect-error
+  return prismaModel.create({
+    data: {
+      seed,
+      contentBody,
+      offer: { connect: { id: offerId } },
+      clientSegment: { connect: { id: clientSegmentId } },
+      user: { connect: { email } },
+    },
+  });
+};
+
 const searchData = async (prismaModel: PrismaModel, searchTerm: string) => {
   // @ts-expect-error
   return prismaModel.findMany({
@@ -56,4 +70,28 @@ const searchData = async (prismaModel: PrismaModel, searchTerm: string) => {
   });
 };
 
-export { getDataForUser, getOfferAndClientSegmentForUser, saveDataForUser, searchData, PrismaModel };
+const getUserOffersAndClientSegments = async (
+  prismaModel: PrismaModel,
+  offerIds: number[],
+  clientsegmentIds: number[],
+  email: string,
+) => {
+  // @ts-expect-error
+  return prismaModel.findUnique({
+    where: { email },
+    include: {
+      offers: { where: { id: { in: offerIds } } },
+      clientsegments: { where: { id: { in: clientsegmentIds } } },
+    },
+  });
+};
+
+export {
+  getDataForUser,
+  getOfferAndClientSegmentForUser,
+  getUserOffersAndClientSegments,
+  saveContent,
+  saveDataForUser,
+  searchData,
+  PrismaModel,
+};

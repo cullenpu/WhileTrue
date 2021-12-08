@@ -1,29 +1,22 @@
 import { render, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import React from 'react';
-import SavedContentTable from '../components/SavedContentTable';
+import ContentTable from '../components/ContentTable';
 import { Dashboard } from '../pages/Dashboard';
 
 jest.mock('axios');
 const mockAxios = axios as jest.Mocked<typeof axios>;
 
 const content = [
-  {
-    id: '1',
-    contentTitle: 'title1',
-    contentBody: 'body1',
-    time: '1',
-  },
-  {
-    id: '2',
-    contentTitle: 'title2',
-    contentBody: 'body2',
-    time: '2',
-  },
+  { clientSegmentId: 1, contentBody: 'content1', offerId: 1, seed: 'seed1', time: new Date(), enableSaving: false },
+  { clientSegmentId: 2, contentBody: 'content2', offerId: 2, seed: 'seed2', time: new Date(), enableSaving: false },
 ];
 
 const contentTableProps = {
   content,
+  enableSaving: false,
+  contentOffers: [{ offer: 'offer' }, { offer: 'offer' }],
+  contentClientSegments: [{ offer: 'clientSegment' }, { offer: 'clientSegment' }],
 };
 
 // Mocking the graph as amCharts cannot be used with jest
@@ -34,9 +27,7 @@ describe('<Dashboard />', () => {
   it('should render the LoginForm', () => {
     const { getByTestId } = render(<Dashboard />);
     const graph = getByTestId('graph');
-    const savedContentTable = getByTestId('saved-content-table');
     expect(graph).toBeInTheDocument();
-    expect(savedContentTable).toBeInTheDocument();
   });
 
   it("should fetch user's data", async () => {
@@ -48,15 +39,15 @@ describe('<Dashboard />', () => {
       expect(mockAxios.get).toHaveBeenCalledTimes(1);
     });
 
-    const savedContentCard = queryAllByTestId('saved-content-card');
+    const savedContentCard = queryAllByTestId('content-card');
     expect(savedContentCard).toHaveLength(0);
   });
 });
 
-describe('<SavedContentTable />', () => {
+describe('<ContentTable />', () => {
   it(`should render ${content.length} content cards`, () => {
-    const { getAllByTestId } = render(<SavedContentTable {...contentTableProps} />);
-    const savedContentCard = getAllByTestId('saved-content-card');
+    const { getAllByTestId } = render(<ContentTable {...contentTableProps} />);
+    const savedContentCard = getAllByTestId('content-card');
     expect(savedContentCard).toHaveLength(content.length);
   });
 });

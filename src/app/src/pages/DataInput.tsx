@@ -1,9 +1,8 @@
 import { Box, Center, Heading, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import * as React from 'react';
 import { getData, postData } from '../api/data';
-import ClientSegmentInputs from '../components/ClientSegmentInputs';
+import DataInputForm from '../components/DataInputForm';
 import DataTable from '../components/DataTable';
-import OfferInputs from '../components/OfferInputs';
 
 export const DataInput = () => {
   const [isLoading, setLoading] = React.useState(true);
@@ -54,7 +53,7 @@ export const DataInput = () => {
 
           <TabPanels>
             <TabPanel>
-              <OfferInputs onOfferSave={saveOffer} />
+              <DataInputForm onSave={saveOffer} displayOffer />
               {isLoading ? (
                 <Center>
                   <Spinner />
@@ -64,7 +63,7 @@ export const DataInput = () => {
               )}
             </TabPanel>
             <TabPanel>
-              <ClientSegmentInputs onClientSegmentSave={saveClientSegment} />
+              <DataInputForm onSave={saveClientSegment} displayOffer={false} />
               {isLoading ? (
                 <Center>
                   <Spinner />

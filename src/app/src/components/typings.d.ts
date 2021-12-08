@@ -1,7 +1,12 @@
 export interface ContentCard {
-  contentTitle?: string;
+  seed?: string;
   contentBody: string;
   time: DateTime;
+  offerId: number;
+  clientSegmentId: number;
+  enableSaving: boolean;
+  offer?: string;
+  clientSegment?: string;
 }
 
 // export interface ContentDate {

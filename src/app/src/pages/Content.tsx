@@ -2,7 +2,7 @@ import { Center, Heading, Link, Spinner } from '@chakra-ui/react';
 import * as React from 'react';
 import { useLocation } from 'react-router';
 import { generateContent } from '../api/generateContent';
-import GeneratedContentTable from '../components/GeneratedContentTable';
+import ContentTable from '../components/ContentTable';
 import { MainButton } from '../components/MainButton';
 import { ContentCard } from '../components/typings';
 
@@ -19,7 +19,9 @@ export const Content = () => {
   const { offerId, clientSegmentId, keywords } = state;
 
   const generateContentUsingParams = async () => {
-    setGeneratedContent(await generateContent(offerId, clientSegmentId, keywords));
+    const content = await generateContent(offerId, clientSegmentId, keywords);
+    console.log(content);
+    setGeneratedContent(content);
   };
 
   React.useEffect(() => {
@@ -43,7 +45,7 @@ export const Content = () => {
       {generatedContent.length === 0 ? (
         <Spinner style={{ margin: '20% 50%' }} />
       ) : (
-        <GeneratedContentTable content={generatedContent} />
+        <ContentTable content={generatedContent} enableSaving />
       )}
     </div>
   );
