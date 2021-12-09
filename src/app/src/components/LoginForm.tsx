@@ -1,6 +1,5 @@
+import { Button, Input } from '@chakra-ui/react';
 import { useState } from 'react';
-
-import { Input, Button } from '@chakra-ui/react';
 
 interface Props {
   onEmailSubmit: Function;
@@ -18,7 +17,9 @@ const LoginForm = ({ onEmailSubmit, disabled }: Props) => {
   return (
     <>
       <form onSubmit={handleSubmit} data-testid="login-form">
-        <h3 className="form-header">Login</h3>
+        <h3 className="form-header" id="main">
+          Login
+        </h3>
         <Input
           placeholder="Enter your email"
           value={email}

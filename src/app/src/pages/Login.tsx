@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import postLogin from '../api/login';
+import LoginForm from '../components/LoginForm';
 // @ts-expect-error
 import { magic } from '../lib/magic';
 import { UserContext } from '../lib/UserContext';
-import LoginForm from '../components/LoginForm';
-
-import postLogin from '../api/login';
 
 const getDidTokenFromMagic = async (email: string) => {
   // @ts-expect-error
@@ -57,6 +56,10 @@ export const Login = () => {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    document.title = 'Login - WhileTrue';
+  });
 
   return (
     <div>

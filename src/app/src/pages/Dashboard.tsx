@@ -46,13 +46,16 @@ export const Dashboard = () => {
   };
 
   React.useEffect(() => {
+    document.title = 'Dashboard - WhileTrue';
     getContentFromApi();
   }, []);
 
   return (
     <div>
       <Center m="10">
-        <Heading>Dashboard</Heading>
+        <header>
+          <Heading id="main">Dashboard</Heading>
+        </header>
       </Center>
 
       <Graph offers={offers} content={content} />
