@@ -5,16 +5,9 @@ import qs from 'qs';
 import { postData } from '../api/data';
 import { ContentCard } from './typings';
 
-function handleSave(
-  setButtonText: Function,
-  buttonText: string,
-  contentBody: string,
-  offerId: number,
-  clientSegmentId: number,
-  seed?: string,
-) {
+function handleSave(setButtonText: Function, buttonText: string, content: any) {
   if (buttonText === 'Save') {
-    postData('content', { seed, contentBody, offerId, clientSegmentId });
+    postData('content', content);
     setButtonText('Saved');
   }
 }
@@ -38,7 +31,7 @@ const ContentCardComponent = ({
         Prompt: {seed}
       </Text>
       {enableSaving ? (
-        <Button onClick={() => handleSave(setButtonText, buttonText, contentBody, offerId, clientSegmentId, seed)}>
+        <Button onClick={() => handleSave(setButtonText, buttonText, { contentBody, offerId, clientSegmentId, seed })}>
           {buttonText}
         </Button>
       ) : (

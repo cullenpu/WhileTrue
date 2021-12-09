@@ -20,7 +20,7 @@ export const Logout = () => {
 
   return (
     <>
-      <div>logout yo</div>
+      <div>Logout</div>
     </>
   );
 };

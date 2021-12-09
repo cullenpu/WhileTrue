@@ -1,6 +1,6 @@
 {
     "scripts": {
-      "install-all": "npm i --prefix server && npm i --prefix app",
+      "install-all": "npm ci --prefix server && npm ci --prefix app",
       "build": "npm run install-all && npm run build --prefix app && npm run build --prefix server",
       "start": "npm run start:prod --prefix server",
       "test": "npm run test --prefix app && npm run test --prefix server",

@@ -14,6 +14,31 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
+const createLinks = (links: { display: string; href: string }[]) => {
+  return links.map((link) => (
+    <Link
+      px={2}
+      py={1}
+      rounded="md"
+      _hover={{
+        textDecoration: 'none',
+        bg: useColorModeValue('blue.200', 'blue.700'),
+      }}
+      href={link.href}
+    >
+      <Heading as="h5" size="sm">
+        {link.display}
+      </Heading>
+    </Link>
+  ));
+};
+
+const links = [
+  { display: 'Dashboard', href: '/dashboard' },
+  { display: 'Data Input', href: '/data' },
+  { display: 'Create', href: '/generate' },
+];
+
 const Nav = () => {
   return (
     <>
@@ -21,48 +46,7 @@ const Nav = () => {
         <Flex h={16} alignItems="center" justifyContent="space-between">
           <HStack spacing={8} alignItems="center">
             <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
-              <Link
-                px={2}
-                py={1}
-                rounded="md"
-                _hover={{
-                  textDecoration: 'none',
-                  bg: useColorModeValue('blue.200', 'blue.700'),
-                }}
-                href="/dashboard"
-              >
-                <Heading as="h5" size="sm">
-                  Dashboard
-                </Heading>
-              </Link>
-              <Link
-                px={2}
-                py={1}
-                rounded="md"
-                _hover={{
-                  textDecoration: 'none',
-                  bg: useColorModeValue('blue.200', 'blue.700'),
-                }}
-                href="/data"
-              >
-                <Heading as="h5" size="sm">
-                  Data Input
-                </Heading>
-              </Link>
-              <Link
-                px={2}
-                py={1}
-                rounded="md"
-                _hover={{
-                  textDecoration: 'none',
-                  bg: useColorModeValue('blue.200', 'blue.700'),
-                }}
-                href="/generate"
-              >
-                <Heading as="h5" size="sm">
-                  Create
-                </Heading>
-              </Link>
+              {createLinks(links)}
             </HStack>
           </HStack>
           <Flex alignItems="center">

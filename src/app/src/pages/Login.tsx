@@ -28,28 +28,28 @@ const getDidTokenFromMagic = async (email: string) => {
   return userMetadata;
 };
 
+const getUserMetadata = async (email: string) => {
+  if (process.env.NODE_ENV === 'production') {
+    const userMetadata = await getDidTokenFromMagic(email);
+    return userMetadata;
+  }
+  const status = await postLogin(Math.random().toString(36).slice(7), email);
+  if (status !== 200) {
+    throw Error('Failed to validate login');
+  }
+  return { issuer: '', email, publicAddress: '' };
+};
+
 export const Login = () => {
   const history = useHistory();
   const [disabled, setDisabled] = useState(false);
-
   const { setUser } = useContext(UserContext);
 
   async function handleLoginWithEmail(email: string) {
     try {
       setDisabled(true); // disable login button to prevent multiple emails from being triggered
-
       // Trigger Magic link to be sent to user
-      if (process.env.NODE_ENV === 'production') {
-        const userMetadata = await getDidTokenFromMagic(email);
-        await setUser(userMetadata);
-      } else {
-        const status = await postLogin(Math.random().toString(36).slice(7), email);
-        if (status !== 200) {
-          throw Error('Failed to validate login');
-        }
-
-        await setUser({ issuer: '', email, publicAddress: '' });
-      }
+      setUser(await getUserMetadata(email));
 
       history.push('/dashboard');
     } catch (error) {

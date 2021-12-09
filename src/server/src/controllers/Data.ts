@@ -23,6 +23,21 @@ const makeNumberArray = (value: any) => {
   return value.split(',').map((item: string) => parseInt(item, 10));
 };
 
+const getOffersAndClientSegmentMap = (data: any) => {
+  const offers = {};
+  for (let i = 0; i < data.offers.length; i += 1) {
+    // @ts-expect-error
+    offers[data.offers[i].id] = data.offers[i];
+  }
+
+  const clientSegments = {};
+  for (let i = 0; i < data.clientsegments.length; i += 1) {
+    // @ts-expect-error
+    clientSegments[data.clientsegments[i].id] = data.clientsegments[i];
+  }
+  return { offers, clientSegments };
+};
+
 const getData = async (req: Request, res: Response, modelToAccess: string) => {
   try {
     let data;
@@ -35,9 +50,11 @@ const getData = async (req: Request, res: Response, modelToAccess: string) => {
         clientsegmentIds,
         req.user.email,
       );
-    } else {
-      data = await getDataForUser(prismaModels[modelToAccess], req.user.email);
+
+      return res.json(getOffersAndClientSegmentMap(data));
     }
+    data = await getDataForUser(prismaModels[modelToAccess], req.user.email);
+
     res.json(data);
   } catch (error) {
     logger.log(`Error getting ${modelToAccess}`, { level: 'error', meta: { user: req.user.email, error } });
@@ -55,7 +72,6 @@ const saveData = async (req: Request, res: Response, modelToAccess: string) => {
     }
     res.json(data);
   } catch (error) {
-    console.log(error);
     logger.log(`Error saving ${modelToAccess}`, { level: 'error', meta: { user: req.user.email, error } });
     res.status(500).json({ message: `Error saving ${modelToAccess}` });
   }
@@ -63,15 +79,10 @@ const saveData = async (req: Request, res: Response, modelToAccess: string) => {
 
 const searchDataByModel = async (req: Request, res: Response, modelToAccess: string) => {
   try {
-    console.log('yo22');
     const { searchTerm } = req.params;
-    console.log('yo');
-    console.log(searchTerm);
     const searchResults = await searchData(prismaModels[modelToAccess], searchTerm);
-    console.log(searchResults);
     res.json(searchResults);
   } catch (error) {
-    console.log(error);
     logger.log(`Error searching ${modelToAccess}`, { level: 'error', meta: { user: req.user.email, error } });
     res.status(500).json({ message: `Error searching ${modelToAccess}` });
   }

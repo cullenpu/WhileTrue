@@ -1,9 +1,11 @@
-import { Magic } from '@magic-sdk/admin';
+import { Magic, MagicUserMetadata } from '@magic-sdk/admin';
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { uuid } from 'uuidv4';
+
+import { findOrCreateUser } from '../lib/prisma';
 import { setTokenCookie } from '../lib/cookies';
 import logger from '../utils/logger';
 
@@ -12,56 +14,44 @@ dotenv.config();
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 const prisma = new PrismaClient();
 
+const getMetadataFromDidToken = async (didToken: string, email: string) => {
+  let metadata;
+  if (process.env.NODE_ENV === 'production') {
+    await magic.token.validate(didToken);
+
+    metadata = await magic.users.getMetadataByToken(didToken);
+  } else {
+    metadata = { issuer: uuid(), email, publicAddress: '' };
+  }
+
+  return metadata;
+};
+
+const signJwtToken = (metadata: MagicUserMetadata) => {
+  return jwt.sign({ ...metadata, exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7 }, process.env.JWT_SECRET || '');
+};
+
 const authLogin = async (req: Request, res: Response) => {
   try {
-    if (req.headers.authorization) {
-      const didToken = req.headers.authorization.substr(7);
+    if (!req.headers.authorization) {
+      throw Error('No authorization header');
+    }
+    const didToken = req.headers.authorization.substr(7);
 
-      let metadata;
-      if (process.env.NODE_ENV === 'production') {
-        await magic.token.validate(didToken);
-
-        metadata = await magic.users.getMetadataByToken(didToken);
-      } else {
-        metadata = { issuer: uuid(), email: req.body.email, publicAddress: '' };
-      }
-      if (metadata.issuer && metadata.email) {
-        const user = await prisma.user.findUnique({ where: { email: metadata.email } });
-
-        if (!user) {
-          await prisma.user.create({
-            data: {
-              id: metadata.issuer,
-              email: metadata.email,
-            },
-          });
-        }
-      } else {
-        const message = 'Could not get metadata from auth token';
-        logger.log(message, { level: 'error', meta: { user: req.user.email } });
-        throw Error(message);
-      }
-
-      const token = jwt.sign(
-        { ...metadata, exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7 },
-        process.env.JWT_SECRET || '',
-      );
-
-      setTokenCookie(res, token);
-
-      logger.log('User logged in!', { level: 'info', meta: { email: metadata.email } });
-
-      res.status(200).json({ authenticated: true });
-    } else {
-      const message = 'No authorization header';
-      logger.log(message, { level: 'error' });
+    const metadata = await getMetadataFromDidToken(didToken, req.body.email);
+    if (!metadata.issuer || !metadata.email) {
+      const message = 'Could not get metadata from auth token';
       throw Error(message);
     }
+
+    await findOrCreateUser(prisma.user, metadata.issuer, metadata.email);
+    setTokenCookie(res, signJwtToken(metadata));
+    logger.log('User logged in!', { level: 'info', meta: { email: metadata.email } });
+
+    res.status(200).json({ authenticated: true });
   } catch (error) {
-    let errorMessage = 'Auth error';
-    if (error instanceof Error) {
-      errorMessage = error.message;
-    }
+    // @ts-expect-error
+    const errorMessage = error.message;
     logger.log('Error while authenticating', { level: 'error', meta: { error: errorMessage } });
     res.status(500).json({ error: errorMessage });
   }

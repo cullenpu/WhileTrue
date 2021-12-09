@@ -33,6 +33,7 @@ export const Callback = ({ location }: Props) => {
           }
           //@ts-expect-error
           const userMetadata = await magic.user.getMetadata();
+          console.log(userMetadata);
           await setUser(userMetadata);
           history.push('/profile');
         } catch (err) {

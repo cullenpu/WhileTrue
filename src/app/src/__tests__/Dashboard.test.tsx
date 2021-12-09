@@ -24,7 +24,7 @@ const contentTableProps = {
 jest.mock('../components/Graph', () => () => <div data-testid="graph">Graph</div>);
 
 describe('<Dashboard />', () => {
-  it('should render the LoginForm', () => {
+  it('should render the Dashboard', () => {
     const { getByTestId } = render(<Dashboard />);
     const graph = getByTestId('graph');
     expect(graph).toBeInTheDocument();

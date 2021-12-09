@@ -5,6 +5,18 @@ import ContentTable from '../components/ContentTable';
 import Graph from '../components/Graph';
 import { ContentCard } from '../components/typings';
 
+const putOfferAndClientSegmentInContent = async (content: never, offers: never, clientSegments: never) => {
+  const getContent = content;
+  // @ts-expect-error
+  for (let i = 0; i < getContent.length; i += 1) {
+    // @ts-expect-error
+    getContent[i].offer = offers[getContent[i]['offerId']].offer;
+    // @ts-expect-error
+    getContent[i].clientSegment = clientSegments[getContent[i]['clientsegmentId']].segment;
+  }
+  return getContent as never;
+};
+
 export const Dashboard = () => {
   const [content, setContent] = React.useState<ContentCard[]>([]);
   const [offers, setOffers] = React.useState([]);
@@ -13,7 +25,7 @@ export const Dashboard = () => {
   const getContentFromApi = async () => {
     try {
       setLoading(true);
-      const getContent = await getData('content');
+      let getContent = await getData('content');
 
       setOffers(await getData('offers'));
       // @ts-expect-error
@@ -24,16 +36,7 @@ export const Dashboard = () => {
       const data = await getData(
         `offersclientsegments?offerIds=${offerIds.toString()}&clientsegmentIds=${clientSegmentIds.toString()}`,
       );
-
-      const dataOffers = data['offers'];
-      const dataClientSegments = data['clientSegments'];
-      // @ts-expect-error
-      for (let i = 0; i < getContent.length; i += 1) {
-        // @ts-expect-error
-        getContent[i].offer = dataOffers[getContent[i].offerId].offer;
-        // @ts-expect-error
-        getContent[i].clientSegment = dataClientSegments[getContent[i].clientsegmentId].segment;
-      }
+      getContent = await putOfferAndClientSegmentInContent(getContent, data['offers'], data['clientSegments']);
 
       setContent(getContent);
       setLoading(false);

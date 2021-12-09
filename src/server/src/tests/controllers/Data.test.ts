@@ -40,7 +40,7 @@ describe('getData endpoint', () => {
     const mockedPrismaGet = jest.spyOn(prisma, 'getUserOffersAndClientSegments').mockReturnValueOnce(
       Promise.resolve({
         offers: mockOffers,
-        clientSegments: mockClientSegments,
+        clientsegments: mockClientSegments,
       }),
     );
 

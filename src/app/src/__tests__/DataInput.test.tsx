@@ -35,24 +35,6 @@ describe('<DataInput />', () => {
   });
 });
 
-describe('<OfferInputs />', () => {
-  const onOfferSave = jest.fn();
-  const offerInputsProps = {
-    onOfferSave,
-  };
-
-  it('should save offers using input forms', () => {
-    const { getByTestId } = render(<OfferInputs {...offerInputsProps} />);
-    const offerDescription = getByTestId('offer-description');
-    const offerType = getByTestId('offer-type');
-    const save = getByTestId('save');
-    fireEvent.change(offerDescription, { target: { value: 'test-description' } });
-    fireEvent.change(offerType, { target: { value: 'test-type' } });
-    fireEvent.click(save);
-    expect(onOfferSave).toHaveBeenCalledWith('test-description', 'test-type');
-  });
-});
-
 describe('<DataInputForms /> for clientSegment', () => {
   const onClientSegmentSave = jest.fn();
   const clientSegmentInputsProps = {

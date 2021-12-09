@@ -98,7 +98,24 @@ const getAllUserInfo = async (prismaModel: PrismaModel, email: string) => {
   });
 };
 
+const findOrCreateUser = async (prismaModel: PrismaModel, issuer: string, email: string) => {
+  // @ts-expect-error
+  const user = await prismaModel.findUnique({ where: { email } });
+
+  if (!user) {
+    // @ts-expect-error
+    await prismaModel.create({
+      data: {
+        id: issuer,
+        email,
+      },
+    });
+  }
+  return user;
+};
+
 export {
+  findOrCreateUser,
   getAllUserInfo,
   getDataForUser,
   getOfferAndClientSegmentForUser,

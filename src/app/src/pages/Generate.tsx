@@ -5,11 +5,42 @@ import { searchDataByModel } from '../api/generateContent';
 import GenContentSearchBar from '../components/GenContentSearchBar';
 import { MainButton } from '../components/MainButton';
 
+const searchboxes = (
+  data: { display: string; placeholder: string; dataId: React.Dispatch<React.SetStateAction<number>>; model: string }[],
+) => {
+  return data.map((item) => (
+    <Box>
+      <FormLabel fontSize="2xl">{item.display}</FormLabel>
+      <GenContentSearchBar
+        placeholder={item.placeholder}
+        setDataId={item.dataId}
+        model={item.model}
+        searchFunc={searchDataByModel}
+      />
+    </Box>
+  ));
+};
+
 export const Generate = () => {
   const [offerId, setOfferId] = useState(-1);
   const [clientSegmentId, setClientSegmentId] = useState(-1);
   const [keywords, setKeywords] = useState('');
   const [languageType, setLanguageType] = useState('Friendly');
+
+  const displayBoxes = [
+    {
+      display: 'Offer',
+      placeholder: 'Search for an offer here',
+      dataId: setOfferId,
+      model: 'offers',
+    },
+    {
+      display: 'Client Segment',
+      placeholder: 'Search for an client segment here',
+      dataId: setClientSegmentId,
+      model: 'clients',
+    },
+  ];
 
   return (
     <div>
@@ -20,25 +51,7 @@ export const Generate = () => {
 
         <Center>
           <SimpleGrid columns={1} rowGap={8} w="full">
-            <Box>
-              <FormLabel fontSize="2xl">Offer</FormLabel>
-              <GenContentSearchBar
-                placeholder="Search for an offer here"
-                setDataId={setOfferId}
-                model="offers"
-                searchFunc={searchDataByModel}
-              />
-            </Box>
-
-            <Box>
-              <FormLabel fontSize="2xl">Client Segment</FormLabel>
-              <GenContentSearchBar
-                placeholder="Search for a client segment here"
-                setDataId={setClientSegmentId}
-                model="clients"
-                searchFunc={searchDataByModel}
-              />
-            </Box>
+            {searchboxes(displayBoxes)}
 
             <Box>
               <FormLabel fontSize="2xl">Key Words</FormLabel>
@@ -66,9 +79,7 @@ export const Generate = () => {
         <Spacer />
         {offerId !== -1 && clientSegmentId !== -1 ? (
           <Link to={{ pathname: '/content', state: { offerId, clientSegmentId, keywords } }}>
-            <MainButton
-              buttonText="Generate"
-            />
+            <MainButton buttonText="Generate" />
           </Link>
         ) : (
           <Button width="165px" height="40px" isDisabled>
