@@ -21,6 +21,7 @@ export const DataInput = () => {
   };
 
   React.useEffect(() => {
+    document.title = 'Data Input - WhileTrue';
     getDataFromApi();
   }, []);
 
@@ -37,7 +38,9 @@ export const DataInput = () => {
   return (
     <div>
       <Center m="10">
-        <Heading>Data Input</Heading>
+        <header>
+          <Heading id="main">Data Input</Heading>
+        </header>
       </Center>
 
       <Box maxW="75%" mx="auto">

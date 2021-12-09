@@ -25,6 +25,7 @@ export const Content = () => {
   };
 
   React.useEffect(() => {
+    document.title = 'Content - WhileTrue';
     try {
       generateContentUsingParams();
     } catch (err) {
@@ -35,7 +36,9 @@ export const Content = () => {
   return (
     <div>
       <Center m="10">
-        <Heading>Personalized Content</Heading>
+        <header>
+          <Heading id="main">Personalized Content</Heading>
+        </header>
       </Center>
       <div style={{ margin: '0 0 0 10%' }}>
         <Link href="/generate">

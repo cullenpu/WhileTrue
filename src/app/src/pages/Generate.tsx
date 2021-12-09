@@ -1,5 +1,5 @@
 import { Box, Button, Center, Flex, FormLabel, Heading, Input, SimpleGrid, Spacer } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { searchDataByModel } from '../api/generateContent';
 import GenContentSearchBar from '../components/GenContentSearchBar';
@@ -27,6 +27,10 @@ export const Generate = () => {
   const [keywords, setKeywords] = useState('');
   const [languageType, setLanguageType] = useState('Friendly');
 
+  useEffect(() => {
+    document.title = 'Create - WhileTrue';
+  }, []);
+
   const displayBoxes = [
     {
       display: 'Offer',
@@ -46,7 +50,9 @@ export const Generate = () => {
     <div>
       <div style={{ margin: '0 15% 40px 15%' }}>
         <Center mt="10" mb="10">
-          <Heading>Generate Copy</Heading>
+          <header>
+            <Heading id="main">Create Copy</Heading>
+          </header>
         </Center>
 
         <Center>

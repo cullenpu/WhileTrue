@@ -46,6 +46,9 @@ const Nav = () => {
         <Flex h={16} alignItems="center" justifyContent="space-between">
           <HStack spacing={8} alignItems="center">
             <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
+              <a className="skip-to-content-link" href="#main">
+                Skip to Content
+              </a>
               {createLinks(links)}
             </HStack>
           </HStack>
@@ -67,6 +70,21 @@ const Nav = () => {
           </Flex>
         </Flex>
       </Box>
+      <style>{`
+      .skip-to-content-link {
+        height: 30px;
+        left: 50%;
+        margin: 8px;
+        padding: 8px;
+        position: absolute;
+        transform: translateY(-200%);
+        transition: transform 0.3s;
+      }
+
+      .skip-to-content-link:focus {
+        transform: translateY(0%);
+      }
+      `}</style>
     </>
   );
 };
