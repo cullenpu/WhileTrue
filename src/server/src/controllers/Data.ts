@@ -40,7 +40,6 @@ const getData = async (req: Request, res: Response, modelToAccess: string) => {
     }
     res.json(data);
   } catch (error) {
-    console.log(error);
     logger.log(`Error getting ${modelToAccess}`, { level: 'error', meta: { user: req.user.email, error } });
     res.status(500).json({ message: `Error getting ${modelToAccess}` });
   }
@@ -64,11 +63,15 @@ const saveData = async (req: Request, res: Response, modelToAccess: string) => {
 
 const searchDataByModel = async (req: Request, res: Response, modelToAccess: string) => {
   try {
+    console.log('yo22');
     const { searchTerm } = req.params;
+    console.log('yo');
+    console.log(searchTerm);
     const searchResults = await searchData(prismaModels[modelToAccess], searchTerm);
     console.log(searchResults);
     res.json(searchResults);
   } catch (error) {
+    console.log(error);
     logger.log(`Error searching ${modelToAccess}`, { level: 'error', meta: { user: req.user.email, error } });
     res.status(500).json({ message: `Error searching ${modelToAccess}` });
   }

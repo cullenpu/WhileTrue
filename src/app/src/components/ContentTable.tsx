@@ -76,8 +76,8 @@ const ContentTable = ({ content, enableSaving, contentOffers = [], contentClient
                 offerId={c.offerId}
                 clientSegmentId={c.clientSegmentId}
                 enableSaving={enableSaving}
-                offer={!enableSaving ? contentOffers[i]['offer'] : undefined}
-                clientSegment={!enableSaving ? contentClientSegments[i]['segment'] : undefined}
+                offer={!enableSaving ? c.offer : undefined}
+                clientSegment={!enableSaving ? c.clientSegment : undefined}
               />
             </div>
           ))}

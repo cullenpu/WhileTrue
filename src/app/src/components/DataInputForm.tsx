@@ -15,8 +15,11 @@ const DataInputForm = ({ onSave, displayOffer }: Props) => {
   const saveData = () => {
     if (displayOffer) {
       onSave(offerDescription, offerType);
+      setOfferDescription('');
+      setOfferType('');
     } else {
       onSave(clientSegment);
+      setClientSegment('');
     }
   };
 

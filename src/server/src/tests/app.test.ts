@@ -3,7 +3,6 @@ import app from '../app';
 
 describe('Check status endpoint', () => {
   jest.setTimeout(30000);
-  // @ts-ignore
   test('Status 200', async () => {
     await request(app)
       .get('/api/status')
@@ -11,8 +10,4 @@ describe('Check status endpoint', () => {
         expect(response.statusCode).toBe(200);
       });
   });
-});
-
-afterAll(async () => {
-  await new Promise<void>((resolve) => setTimeout(() => resolve(), 10000));
 });

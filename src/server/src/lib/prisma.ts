@@ -86,7 +86,20 @@ const getUserOffersAndClientSegments = async (
   });
 };
 
+const getAllUserInfo = async (prismaModel: PrismaModel, email: string) => {
+  // @ts-expect-error
+  return prismaModel.findUnique({
+    where: { email },
+    include: {
+      offers: true,
+      clientsegments: true,
+      content: true,
+    },
+  });
+};
+
 export {
+  getAllUserInfo,
   getDataForUser,
   getOfferAndClientSegmentForUser,
   getUserOffersAndClientSegments,

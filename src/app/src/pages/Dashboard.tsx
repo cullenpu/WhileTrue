@@ -8,16 +8,13 @@ import { ContentCard } from '../components/typings';
 export const Dashboard = () => {
   const [content, setContent] = React.useState<ContentCard[]>([]);
   const [offers, setOffers] = React.useState([]);
-  const [contentOffers, setContentOffers] = React.useState([]);
-  const [contentClientSegments, setContentClientSegments] = React.useState([]);
   const [isLoading, setLoading] = React.useState(false);
-  // const [contentDate, setContentDate] = React.useState<ContentDate[]>([]);
 
   const getContentFromApi = async () => {
     try {
       setLoading(true);
       const getContent = await getData('content');
-      setContent(getContent);
+
       setOffers(await getData('offers'));
       // @ts-expect-error
       const offerIds = getContent.map((item) => item.offerId);
@@ -27,10 +24,19 @@ export const Dashboard = () => {
       const data = await getData(
         `offersclientsegments?offerIds=${offerIds.toString()}&clientsegmentIds=${clientSegmentIds.toString()}`,
       );
-      setContentOffers(data['offers']);
-      setContentClientSegments(data['clientsegments']);
+
+      const dataOffers = data['offers'];
+      const dataClientSegments = data['clientSegments'];
+      // @ts-expect-error
+      for (let i = 0; i < getContent.length; i += 1) {
+        // @ts-expect-error
+        getContent[i].offer = dataOffers[getContent[i].offerId].offer;
+        // @ts-expect-error
+        getContent[i].clientSegment = dataClientSegments[getContent[i].clientsegmentId].segment;
+      }
+
+      setContent(getContent);
       setLoading(false);
-      // setContentDate(await getData('content'));
     } catch (err) {
       console.log(err);
     }
@@ -50,14 +56,7 @@ export const Dashboard = () => {
       <div style={{ margin: '5% 10%' }}>
         <Heading>Saved Content</Heading>
       </div>
-      {!isLoading && (
-        <ContentTable
-          content={content}
-          enableSaving={false}
-          contentOffers={contentOffers}
-          contentClientSegments={contentClientSegments}
-        />
-      )}
+      {!isLoading && <ContentTable content={content} enableSaving={false} />}
     </div>
   );
 };

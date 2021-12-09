@@ -28,7 +28,9 @@ router.post('/data/clients', jwtMiddleware, (req, res) => saveData(req, res, 'cl
 router.get('/data/offers', jwtMiddleware, (req, res) => getData(req, res, 'offer'));
 router.post('/data/offers', jwtMiddleware, (req, res) => saveData(req, res, 'offer'));
 
-router.get('/data/offers?searchTerm=:searchTerm', jwtMiddleware, (req, res) => searchDataByModel(req, res, 'offer'));
+router.get('/data/search/offers?searchTerm=:searchTerm', jwtMiddleware, (req, res) =>
+  searchDataByModel(req, res, 'offer'),
+);
 router.get('/data/clients?searchTerm=:searchTerm', jwtMiddleware, (req, res) =>
   searchDataByModel(req, res, 'clientSegment'),
 );

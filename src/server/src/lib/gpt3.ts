@@ -25,10 +25,17 @@ const generateCopyUsingGPT3 = async (initialContent: content) => {
     topP: 1,
     presencePenalty: 0,
     frequencyPenalty: 0,
+    n: 3,
     stop: ['Marketing Content:'],
   });
 
-  return gptResponse.data.choices[0].text.trim();
+  const text = [];
+
+  for (let i = 0; i < gptResponse.data.choices.length; i += 1) {
+    text.push(gptResponse.data.choices[i].text.trim());
+  }
+
+  return text;
 };
 
 export default generateCopyUsingGPT3;

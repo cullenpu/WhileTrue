@@ -1,19 +1,12 @@
 import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 import logger from '../utils/logger';
-
-const prisma = new PrismaClient();
+import { getAllUserInfo } from '../lib/prisma';
 
 const getUserInfo = async (req: Request, res: Response) => {
+  const prisma = new PrismaClient();
   try {
-    const user = await prisma.user.findUnique({
-      where: { email: req.user.email },
-      include: {
-        offers: true,
-        clientsegments: true,
-        content: true,
-      },
-    });
+    const user = await getAllUserInfo(prisma.user, req.user.email);
 
     return res.json(user);
   } catch (error) {
