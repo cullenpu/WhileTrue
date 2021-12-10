@@ -5,19 +5,27 @@ import DataInputForm from '../components/DataInputForm';
 import DataTable from '../components/DataTable';
 
 export const DataInput = () => {
+  const [offerSuccess, setOfferSuccess] = React.useState(true);
+  const [clientSuccess, setClientSuccess] = React.useState(true);
   const [isLoading, setLoading] = React.useState(true);
   const [offers, setOffers] = React.useState([]);
   const [clientSegments, setClientSegments] = React.useState([]);
 
   const getDataFromApi = async () => {
+    setLoading(true);
     try {
-      setLoading(true);
       setOffers(await getData('offers'));
-      setClientSegments(await getData('clients'));
-      setLoading(false);
     } catch (err) {
       console.log(err);
+      setOfferSuccess(false);
     }
+    try {
+      setClientSegments(await getData('clients'));
+    } catch (err) {
+      console.log(err);
+      setClientSuccess(false);
+    }
+    setLoading(false);
   };
 
   React.useEffect(() => {
@@ -33,6 +41,26 @@ export const DataInput = () => {
   const saveClientSegment = async (segment: string) => {
     await postData('clients', { segment });
     getDataFromApi();
+  };
+
+  const OfferDataTable = () => {
+    return isLoading ? (
+      <Center>
+        <Spinner />
+      </Center>
+    ) : (
+      <DataTable columns={{ offer: 'Description', type: 'Type' }} data={offers} />
+    );
+  };
+
+  const ClientSegmentDataTable = () => {
+    return isLoading ? (
+      <Center>
+        <Spinner />
+      </Center>
+    ) : (
+      <DataTable columns={{ segment: 'Client Segment' }} data={clientSegments} />
+    );
   };
 
   return (
@@ -57,23 +85,11 @@ export const DataInput = () => {
           <TabPanels>
             <TabPanel>
               <DataInputForm onSave={saveOffer} displayOffer />
-              {isLoading ? (
-                <Center>
-                  <Spinner />
-                </Center>
-              ) : (
-                <DataTable columns={{ offer: 'Description', type: 'Type' }} data={offers} />
-              )}
+              {offerSuccess ? <OfferDataTable /> : <Center>Error fetching offer data</Center>}
             </TabPanel>
             <TabPanel>
               <DataInputForm onSave={saveClientSegment} displayOffer={false} />
-              {isLoading ? (
-                <Center>
-                  <Spinner />
-                </Center>
-              ) : (
-                <DataTable columns={{ segment: 'Client Segment' }} data={clientSegments} />
-              )}
+              {clientSuccess ? <ClientSegmentDataTable /> : <Center>Error fetching client segment data</Center>}
             </TabPanel>
           </TabPanels>
         </Tabs>

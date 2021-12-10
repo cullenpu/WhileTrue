@@ -18,6 +18,7 @@ const putOfferAndClientSegmentInContent = async (content: never, offers: never, 
 };
 
 export const Dashboard = () => {
+  const [success, setSuccess] = React.useState(true);
   const [content, setContent] = React.useState<ContentCard[]>([]);
   const [offers, setOffers] = React.useState([]);
   const [isLoading, setLoading] = React.useState(false);
@@ -42,6 +43,7 @@ export const Dashboard = () => {
       setLoading(false);
     } catch (err) {
       console.log(err);
+      setSuccess(false);
     }
   };
 
@@ -58,11 +60,17 @@ export const Dashboard = () => {
         </header>
       </Center>
 
-      <Graph offers={offers} content={content} />
-      <div style={{ margin: '5% 10%' }}>
-        <Heading>Saved Content</Heading>
-      </div>
-      {!isLoading && <ContentTable content={content} enableSaving={false} />}
+      {success ? (
+        <>
+          <Graph offers={offers} content={content} />
+          <div style={{ margin: '5% 10%' }}>
+            <Heading>Saved Content</Heading>
+          </div>
+          {!isLoading && <ContentTable content={content} enableSaving={false} />}
+        </>
+      ) : (
+        <Center>Error fetching data</Center>
+      )}
     </div>
   );
 };
