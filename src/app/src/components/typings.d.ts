@@ -20,6 +20,7 @@ export interface MainButtonAttr {
 }
 
 export interface GenerateSearchBar {
+  display: string;
   placeholder: string;
   setDataId: (data: number) => void;
   model: string;

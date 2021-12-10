@@ -1,3 +1,4 @@
+import { Center } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import postLogin from '../api/login';
@@ -41,6 +42,7 @@ const getUserMetadata = async (email: string) => {
 
 export const Login = () => {
   const history = useHistory();
+  const [success, setSuccess] = useState(true);
   const [disabled, setDisabled] = useState(false);
   const { setUser } = useContext(UserContext);
 
@@ -64,6 +66,7 @@ export const Login = () => {
   return (
     <div>
       <LoginForm disabled={disabled} onEmailSubmit={handleLoginWithEmail} />
+      {success ? null : <Center>Error logging in</Center>}
     </div>
   );
 };

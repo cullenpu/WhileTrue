@@ -10,8 +10,8 @@ const searchboxes = (
 ) => {
   return data.map((item) => (
     <Box>
-      <FormLabel fontSize="2xl">{item.display}</FormLabel>
       <GenContentSearchBar
+        display={item.display}
         placeholder={item.placeholder}
         setDataId={item.dataId}
         model={item.model}
