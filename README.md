@@ -19,6 +19,10 @@ Table of Contents
 ## What is WhileTrue?
 WhileTrue is a SaaS that generates personalized marketing copy (for emails, SMS, etc) given the limited user data of a regulated industry such as finance.
 
+[Demo Video](https://youtu.be/Wli1LPV6Mn0)
+
+Access [WhileTrue here](https://uninterested-field-production.up.railway.app/)
+
 ## High-Level Architecture 
 ![Architecture](./src/architecture-diagram.jpg)
 
@@ -30,9 +34,26 @@ These instructions are how to get the app up and running locally.
 
 Clone the repository `git clone https://github.com/dcsil/WhileTrue.git && cd WhileTrue/src`
 
+You will need the following ENV Variables exported:
+
+```
+CLIENT_URL=http://localhost:3000
+DATABASE_URL=${POSTGRES_DB_URL}
+JWT_SECRET={JWT_SECRET, can use "secret"}
+OPENAI_API_KEY=${OPENAI_API_KEY}
+```
+
 ### If running locally on docker
 
-1. Run docker compose `docker-compose -p whiletrue up --no-cache`
+Goto [package.json](./src/app/package.json) and change the line
+`"proxy": "http://localhost:8080"` to `"proxy": "http://server:8080"`
+
+1. Run docker compose build `docker-compose -p whiletrue --build --no-cache`
+2. Create DB: `docker-compose -p whiletrue run --rm server npm run generate`
+3. Migrate DB: 
+4. Run: `docker-compose -p whiletrue up`
+
+The app will be accessible on `localhost:3000` with the server on `localhost:8080`.
 
 ### If running locally
 1. Install dependencies `cd app && npm install && cd ../server && npm install`

@@ -26,6 +26,7 @@ services:
       - "8080"
     environment:
       DATABASE_URL: 'postgres://postgres:postgres@postgres:5432/WhileTrue'
+      OPEN_AIR_API_KEY: ${OPENAI_API_KEY}
       JWT_SECRET: 'secret'
       CLIENT_URL: 'http://localhost:3000'
     command: "npm start" 
